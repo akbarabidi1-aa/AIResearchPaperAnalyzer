@@ -1,0 +1,64 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card fade-in">
+        <div class="auth-logo" style="background: linear-gradient(135deg,#10b981,#06b6d4);">
+            <i class="bi bi-person-plus-fill"></i>
+        </div>
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Join AI Paper Analyzer and start today</p>
+
+        <form asp-controller="Auth" asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small mb-3"></div>
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                    <input asp-for="Username" class="form-control" placeholder="Min. 3 characters" />
+                </div>
+                <span asp-validation-for="Username" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                    <input asp-for="Password" class="form-control" placeholder="Min. 6 characters" id="pwd1" />
+                    <button type="button" class="input-group-text" onclick="togglePwd1()" style="cursor:pointer;border-left:none">
+                        <i class="bi bi-eye" id="eye1"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-shield-lock-fill"></i></span>
+                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Repeat password" id="pwd2" />
+                    <button type="button" class="input-group-text" onclick="togglePwd2()" style="cursor:pointer;border-left:none">
+                        <i class="bi bi-eye" id="eye2"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+            </div>
+            <button type="submit" class="btn-glow w-100 mb-3" style="background: linear-gradient(135deg,#10b981,#06b6d4)">
+                <i class="bi bi-person-check-fill me-2"></i>Create Account
+            </button>
+        </form>
+
+        <hr class="auth-divider" />
+        <p class="auth-link">
+            Already have an account?
+            <a asp-controller="Auth" asp-action="Login">Sign in here</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function togglePwd1(){const i=document.getElementById('pwd1'),e=document.getElementById('eye1');i.type=i.type==='password'?'text':'password';e.className=i.type==='text'?'bi bi-eye-slash':'bi bi-eye';}
+        function togglePwd2(){const i=document.getElementById('pwd2'),e=document.getElementById('eye2');i.type=i.type==='password'?'text':'password';e.className=i.type==='text'?'bi bi-eye-slash':'bi bi-eye';}
+    </script>
+}

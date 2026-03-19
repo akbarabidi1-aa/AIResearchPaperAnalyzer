@@ -1,0 +1,140 @@
+@model ResultViewModel
+@{
+    ViewData["Title"] = "Analysis Result"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header fade-in">
+    <h1 class="page-title">
+        <span class="page-title-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)">
+            <i class="bi bi-check2-circle"></i>
+        </span>
+        Analysis Complete
+    </h1>
+    <div class="d-flex gap-2">
+        <a asp-controller="Paper" asp-action="Index" class="btn-glass btn">
+            <i class="bi bi-upload me-1"></i>New Upload
+        </a>
+        <a asp-controller="Paper" asp-action="History" class="btn-glass btn">
+            <i class="bi bi-clock-history me-1"></i>History
+        </a>
+    </div>
+</div>
+
+@if (Model.ErrorMessage != null)
+{
+    <div class="alert alert-warning fade-in mb-3">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <strong>AI Note:</strong> @Model.ErrorMessage
+    </div>
+}
+
+<div class="file-banner fade-in">
+    <span class="file-banner-icon"><i class="bi bi-file-earmark-pdf-fill"></i></span>
+    <span class="file-banner-name">@Model.Title</span>
+</div>
+
+<div class="row g-4 fade-in">
+    <div class="col-lg-7">
+
+        <div class="glass-card mb-4">
+            <div class="card-header-custom header-success">
+                <i class="bi bi-text-paragraph"></i> Summary
+            </div>
+            <div class="p-4">
+                <p class="mb-0" style="color:var(--text-secondary);line-height:1.75;font-size:.9rem">
+                    @(string.IsNullOrWhiteSpace(Model.Summary) ? "No summary was generated." : Model.Summary)
+                </p>
+            </div>
+        </div>
+
+        @if (Model.ImportantPoints.Length > 0)
+        {
+            <div class="glass-card mb-4">
+                <div class="card-header-custom header-warning">
+                    <i class="bi bi-list-check"></i> Key Points
+                </div>
+                <div class="p-3">
+                    @foreach (var p in Model.ImportantPoints)
+                    {
+                        <div class="key-point">
+                            <span class="key-point-dot"></span>
+                            <span class="key-point-text">@p</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.Tables.Length > 0)
+        {
+            <div class="glass-card mb-4">
+                <div class="card-header-custom header-dark">
+                    <i class="bi bi-table"></i> Extracted Tables
+                </div>
+                <div class="p-3 overflow-auto">
+                    @foreach (var table in Model.Tables)
+                    {
+                        <table class="table table-sm mb-3" style="color:var(--text-secondary);border-color:var(--border-color)">
+                            @foreach (var row in table)
+                            {
+                                <tr>
+                                    @foreach (var cell in row)
+                                    {
+                                        <td style="border-color:var(--border-color);font-size:.82rem;padding:.45rem .75rem">@cell</td>
+                                    }
+                                </tr>
+                            }
+                        </table>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-lg-5">
+
+        <div class="glass-card mb-4">
+            <div class="card-header-custom header-info">
+                <i class="bi bi-tags-fill"></i> Keywords
+            </div>
+            <div class="p-4">
+                @if (Model.Keywords.Length > 0)
+                {
+                    @foreach (var kw in Model.Keywords)
+                    {
+                        <span class="kw-badge">@kw</span>
+                    }
+                }
+                else
+                {
+                    <span style="color:var(--text-muted);font-size:.85rem">No keywords found.</span>
+                }
+            </div>
+        </div>
+
+        <div class="glass-card mb-4">
+            <div class="card-header-custom header-purple">
+                <i class="bi bi-diagram-3-fill"></i> Paper Structure
+            </div>
+            <div class="p-3">
+                @if (Model.Flow.Length > 0)
+                {
+                    int n = 1;
+                    @foreach (var step in Model.Flow)
+                    {
+                        <div class="flow-step">
+                            <span class="flow-num">@n</span>
+                            <span class="flow-text">@step</span>
+                        </div>
+                        n++;
+                    }
+                }
+                else
+                {
+                    <span style="color:var(--text-muted);font-size:.85rem">No structure detected.</span>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

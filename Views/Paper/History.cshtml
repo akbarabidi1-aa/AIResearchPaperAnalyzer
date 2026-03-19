@@ -1,0 +1,89 @@
+@model IEnumerable<ResearchPaper>
+@{
+    ViewData["Title"] = "My History"; Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header fade-in">
+    <h1 class="page-title">
+        <span class="page-title-icon"><i class="bi bi-clock-history"></i></span>
+        My Analysis History
+    </h1>
+    <a asp-controller="Paper" asp-action="Index" class="btn-glow btn" style="padding:.45rem 1.1rem;font-size:.85rem">
+        <i class="bi bi-plus-lg me-1"></i>New Upload
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="glass-card fade-in">
+        <div class="empty-state">
+            <i class="bi bi-inbox empty-icon"></i>
+            <h5 style="color:var(--text-secondary);font-family:'Space Grotesk',sans-serif">No papers yet</h5>
+            <p style="color:var(--text-muted);font-size:.875rem;margin-bottom:1.5rem">
+                Upload your first research paper to see results here.
+            </p>
+            <a asp-controller="Paper" asp-action="Index" class="btn-glow btn">
+                <i class="bi bi-upload me-2"></i>Upload a Paper
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="glass-card fade-in" style="overflow:hidden">
+        <div class="overflow-auto">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th style="width:44px">#</th>
+                        <th>File</th>
+                        <th>Summary</th>
+                        <th>Keywords</th>
+                        <th style="width:110px">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="color:var(--text-muted)">@i</td>
+                            <td style="max-width:160px">
+                                <span class="d-block text-truncate fw-semibold" title="@item.Title"
+                                      style="color:var(--text-primary);font-size:.84rem">
+                                    <i class="bi bi-file-earmark-pdf-fill me-1" style="color:#f87171"></i>
+                                    @item.Title
+                                </span>
+                            </td>
+                            <td style="max-width:260px">
+                                <span style="font-size:.82rem;color:var(--text-muted)">
+                                    @(item.Summary?.Length > 100 ? item.Summary[..100] + "…" : item.Summary)
+                                </span>
+                            </td>
+                            <td style="max-width:180px">
+                                @if (!string.IsNullOrEmpty(item.Keywords))
+                                {
+                                    @foreach (var kw in item.Keywords.Split(',').Take(3))
+                                    {
+                                        <span class="kw-badge" style="padding:.18rem .6rem;font-size:.72rem">
+                                            @kw.Trim()
+                                        </span>
+                                    }
+                                }
+                            </td>
+                            <td style="white-space:nowrap;color:var(--text-muted);font-size:.8rem">
+                                @item.UploadDate.ToString("MMM dd, yyyy")
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div style="padding:.7rem 1rem;border-top:1px solid var(--border-color);color:var(--text-muted);font-size:.78rem">
+            @Model.Count() paper(s) total
+        </div>
+    </div>
+}
