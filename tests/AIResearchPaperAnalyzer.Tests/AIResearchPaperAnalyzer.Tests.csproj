@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- Lets the tests run on machines that only have a newer .NET runtime installed. -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk"                  Version="17.11.1" />
+    <PackageReference Include="xunit"                                   Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio"               Version="2.8.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory"  Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AIResearchPaperAnalyzer.csproj" />
+  </ItemGroup>
+
+</Project>

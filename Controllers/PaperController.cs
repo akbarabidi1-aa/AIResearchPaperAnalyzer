@@ -1,19 +1,35 @@
-using System.Diagnostics;
-using System.Text.Json;
 using AIResearchPaperAnalyzer.Models;
+using AIResearchPaperAnalyzer.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace AIResearchPaperAnalyzer.Controllers
 {
     public class PaperController : Controller
     {
-        private readonly AppDbContext   _db;
-        private readonly IConfiguration _cfg;
+        private const int MaxTitleLength = 260;     // ResearchPaper.Title column size
 
-        public PaperController(AppDbContext db, IConfiguration cfg)
+        private readonly AppDbContext             _db;
+        private readonly IPaperAnalysisService    _analysis;
+        private readonly PdfUploadValidator       _validator;
+        private readonly UploadOptions            _upload;
+        private readonly IWebHostEnvironment      _env;
+        private readonly ILogger<PaperController> _logger;
+
+        public PaperController(
+            AppDbContext             db,
+            IPaperAnalysisService    analysis,
+            PdfUploadValidator       validator,
+            IOptions<UploadOptions>  upload,
+            IWebHostEnvironment      env,
+            ILogger<PaperController> logger)
         {
-            _db  = db;
-            _cfg = cfg;
+            _db        = db;
+            _analysis  = analysis;
+            _validator = validator;
+            _upload    = upload.Value;
+            _env       = env;
+            _logger    = logger;
         }
 
         // ── Auth guard ────────────────────────────────────────────────────────
@@ -34,59 +50,71 @@ namespace AIResearchPaperAnalyzer.Controllers
         }
 
         // ── POST /Paper/Upload ────────────────────────────────────────────────
+        // The request size limit is configured in Program.cs from Upload:MaxFileSizeBytes.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [RequestSizeLimit(52_428_800)]          // 50 MB max
         public async Task<IActionResult> Upload(UploadViewModel model)
         {
             if (UserId == null) return RedirectToLogin();
 
-            // Validation
-            if (model.File == null || model.File.Length == 0)
+            // 1. Validate before anything touches the disk or Python
+            var validation = _validator.Validate(model.File);
+            if (!validation.IsValid)
             {
-                ModelState.AddModelError("File", "Please select a PDF file.");
-                return View("Index", model);
-            }
-            if (!model.File.FileName.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                ModelState.AddModelError("File", "Only PDF files are accepted.");
+                ModelState.AddModelError("File", validation.Message!);
                 return View("Index", model);
             }
 
-            // 1. Save PDF to disk
-            var uploadsDir = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-            Directory.CreateDirectory(uploadsDir);
-            var savedPath = Path.Combine(uploadsDir, $"{Guid.NewGuid()}.pdf");
+            var file = model.File!;
 
-            await using (var fs = new FileStream(savedPath, FileMode.Create))
-                await model.File.CopyToAsync(fs);
+            // 2. Save PDF to disk under a server-generated name (never the client file name)
+            var savedPath = await SaveUploadAsync(file, HttpContext.RequestAborted);
+            var keepFile  = false;
 
-            // 2. Run Python AI engine
-            var ai = await RunPythonAi(savedPath);
-
-            // 3. Persist result to database
-            var paper = new ResearchPaper
+            try
             {
-                Title      = Path.GetFileName(model.File.FileName),
-                Summary    = ai.Summary  ?? "Analysis pending.",
-                Keywords   = ai.Keywords != null ? string.Join(", ", ai.Keywords) : string.Empty,
-                UploadDate = DateTime.UtcNow,
-                UserId     = UserId!.Value
-            };
-            _db.ResearchPapers.Add(paper);
-            await _db.SaveChangesAsync();
+                // 3. Run Python AI engine
+                var analysis = await _analysis.AnalyzeAsync(savedPath, HttpContext.RequestAborted);
 
-            // 4. Render result view
-            return View("Result", new ResultViewModel
+                if (!analysis.Succeeded || analysis.Data == null)
+                {
+                    ModelState.AddModelError("File", analysis.UserMessage ?? "The analysis failed. Please try again.");
+                    if (_env.IsDevelopment())
+                        ViewData["AnalysisDiagnostics"] = $"{analysis.Failure}: {analysis.Diagnostics}";
+                    return View("Index", model);
+                }
+
+                var ai = analysis.Data;
+
+                // 4. Persist result to database
+                var paper = new ResearchPaper
+                {
+                    Title      = SafeTitle(file.FileName),
+                    Summary    = ai.Summary  ?? "Analysis pending.",
+                    Keywords   = ai.Keywords != null ? string.Join(", ", ai.Keywords) : string.Empty,
+                    UploadDate = DateTime.UtcNow,
+                    UserId     = UserId!.Value
+                };
+                _db.ResearchPapers.Add(paper);
+                await _db.SaveChangesAsync();
+                keepFile = true;
+
+                // 5. Render result view
+                return View("Result", new ResultViewModel
+                {
+                    Title           = paper.Title ?? file.FileName,
+                    Summary         = ai.Summary         ?? "No summary generated.",
+                    Keywords        = ai.Keywords         ?? Array.Empty<string>(),
+                    ImportantPoints = ai.ImportantPoints  ?? Array.Empty<string>(),
+                    Flow            = ai.Flow             ?? Array.Empty<string>(),
+                    Tables          = ai.Tables           ?? Array.Empty<List<List<string>>>()
+                });
+            }
+            finally
             {
-                Title           = paper.Title ?? model.File.FileName,
-                Summary         = ai.Summary         ?? "No summary generated.",
-                Keywords        = ai.Keywords         ?? Array.Empty<string>(),
-                ImportantPoints = ai.ImportantPoints  ?? Array.Empty<string>(),
-                Flow            = ai.Flow             ?? Array.Empty<string>(),
-                Tables          = ai.Tables           ?? Array.Empty<List<List<string>>>(),
-                ErrorMessage    = ai.Status == "error" ? ai.Message : null
-            });
+                // Uploads of successful analyses are kept (as in V1); anything else is removed.
+                if (!keepFile) TryDeleteUpload(savedPath);
+            }
         }
 
         // ── GET /Paper/History ────────────────────────────────────────────────
@@ -103,41 +131,50 @@ namespace AIResearchPaperAnalyzer.Controllers
             return View(papers);
         }
 
-        // ── Python AI helper ──────────────────────────────────────────────────
-        private async Task<AiEngineResult> RunPythonAi(string pdfPath)
+        // ── Upload file helpers ───────────────────────────────────────────────
+        private string UploadsDirectory =>
+            Path.GetFullPath(Path.IsPathRooted(_upload.Directory)
+                ? _upload.Directory
+                : Path.Combine(_env.ContentRootPath, _upload.Directory));
+
+        private async Task<string> SaveUploadAsync(IFormFile file, CancellationToken cancellationToken)
         {
-            var script = _cfg["AiEngine:ScriptPath"]
-                         ?? Path.Combine(Directory.GetCurrentDirectory(), "AIEngine", "ai_engine.py");
-            var python = _cfg["AiEngine:PythonExe"] ?? "python";
+            var uploadsDir = UploadsDirectory;
+            Directory.CreateDirectory(uploadsDir);
 
-            var psi = new ProcessStartInfo
-            {
-                FileName               = python,
-                Arguments              = $"\"{script}\" \"{pdfPath}\"",
-                RedirectStandardOutput = true,
-                RedirectStandardError  = true,
-                UseShellExecute        = false,
-                CreateNoWindow         = true
-            };
-
-            using var proc = new Process { StartInfo = psi };
-            proc.Start();
-            var stdout = await proc.StandardOutput.ReadToEndAsync();
-            await proc.WaitForExitAsync();
-
-            if (string.IsNullOrWhiteSpace(stdout))
-                return new AiEngineResult { Status = "error", Message = "AI engine produced no output." };
-
+            var savedPath = Path.Combine(uploadsDir, $"{Guid.NewGuid():N}.pdf");
             try
             {
-                return JsonSerializer.Deserialize<AiEngineResult>(stdout,
-                           new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
-                       ?? new AiEngineResult { Status = "error", Message = "Empty AI response." };
+                await using var fs = new FileStream(savedPath, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                await file.CopyToAsync(fs, cancellationToken);
             }
-            catch (JsonException ex)
+            catch
             {
-                return new AiEngineResult { Status = "error", Message = ex.Message };
+                TryDeleteUpload(savedPath);
+                throw;
             }
+            return savedPath;
+        }
+
+        private void TryDeleteUpload(string path)
+        {
+            try
+            {
+                System.IO.File.Delete(path);
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                _logger.LogWarning(ex, "Could not delete upload {Path}", path);
+            }
+        }
+
+        // Display only: the client file name is never used to build a path.
+        private static string SafeTitle(string clientFileName)
+        {
+            var name = clientFileName.Replace('\\', '/');
+            name = name[(name.LastIndexOf('/') + 1)..].Trim();
+            if (name.Length == 0) name = "document.pdf";
+            return name.Length <= MaxTitleLength ? name : name[..MaxTitleLength];
         }
     }
 }

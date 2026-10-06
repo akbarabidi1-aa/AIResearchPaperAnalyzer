@@ -6,6 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>AIResearchPaperAnalyzer</RootNamespace>
     <AssemblyName>AIResearchPaperAnalyzer</AssemblyName>
+    <!-- The test project lives inside this folder; keep its files out of the web app. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);tests\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>

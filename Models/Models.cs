@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -128,13 +129,29 @@ namespace AIResearchPaperAnalyzer.Models
 
     public class AiEngineResult
     {
-        public string                Status          { get; set; } = "success";
+        // No default: output without an explicit "status" must not count as success.
+        [JsonPropertyName("status")]
+        public string                Status          { get; set; } = string.Empty;
+
+        [JsonPropertyName("message")]
         public string?               Message         { get; set; }
+
+        [JsonPropertyName("file_name")]
         public string?               FileName        { get; set; }
+
+        [JsonPropertyName("summary")]
         public string?               Summary         { get; set; }
+
+        [JsonPropertyName("keywords")]
         public string[]?             Keywords        { get; set; }
+
+        [JsonPropertyName("important_points")]
         public string[]?             ImportantPoints { get; set; }
+
+        [JsonPropertyName("flow")]
         public string[]?             Flow            { get; set; }
+
+        [JsonPropertyName("tables")]
         public List<List<string>>[]? Tables          { get; set; }
     }
 }

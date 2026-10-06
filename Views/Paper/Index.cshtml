@@ -41,6 +41,14 @@
                     <div id="fileLabel" class="text-center mt-2"></div>
                     <span asp-validation-for="File" class="text-danger small d-block mt-1"></span>
 
+                    @if (ViewData["AnalysisDiagnostics"] is string diagnostics)
+                    {
+                        <details class="mt-2">
+                            <summary class="small" style="color:var(--text-muted)">Diagnostics (Development only)</summary>
+                            <pre class="small mt-2 mb-0" style="color:var(--text-muted);white-space:pre-wrap">@diagnostics</pre>
+                        </details>
+                    }
+
                     <button type="submit" id="submitBtn" class="btn-glow w-100 mt-4" disabled>
                         <i class="bi bi-cpu me-2"></i>Run AI Analysis
                     </button>
