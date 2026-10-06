@@ -1,0 +1,10 @@
+# V1 AIEngine dependencies (derived from imports in AIEngine/*.py)
+# Verified with Python 3.10. Standard-library imports (sys, os, json, re, string) are not listed.
+#
+# extraction.py        -> pdfminer.six
+# preprocess.py        -> nltk (punkt + stopwords data is downloaded at import time)
+# keyword_extractor.py -> scikit-learn, pandas (pandas is imported but unused)
+pdfminer.six
+nltk
+scikit-learn
+pandas

@@ -1,0 +1,96 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >>  >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2028 >>
+stream
+BT /F2 16 Tf 72 740 Td (Effect of Network Depth on Accuracy) Tj ET
+BT /F2 12 Tf 72 720 Td (Abstract) Tj ET
+BT /F1 11 Tf 72 704 Td (Neural networks are widely used for image classification and language modelling. In this) Tj ET
+BT /F1 11 Tf 72 690 Td (synthetic study we investigate how network depth affects classification accuracy. Deeper) Tj ET
+BT /F1 11 Tf 72 676 Td (networks often improve accuracy but increase training cost and memory consumption. We) Tj ET
+BT /F1 11 Tf 72 662 Td (evaluate several architectures on a small benchmark dataset and compare their accuracy.) Tj ET
+BT /F2 12 Tf 72 638 Td (1. Introduction) Tj ET
+BT /F1 11 Tf 72 622 Td (Neural networks are widely used for image classification and language modelling. In this) Tj ET
+BT /F1 11 Tf 72 608 Td (synthetic study we investigate how network depth affects classification accuracy. Deeper) Tj ET
+BT /F1 11 Tf 72 594 Td (networks often improve accuracy but increase training cost and memory consumption. We) Tj ET
+BT /F1 11 Tf 72 580 Td (evaluate several architectures on a small benchmark dataset and compare their accuracy.) Tj ET
+BT /F1 11 Tf 72 566 Td (Neural networks are widely used for image classification and language modelling. In this) Tj ET
+BT /F1 11 Tf 72 552 Td (synthetic study we investigate how network depth affects classification accuracy. Deeper) Tj ET
+BT /F1 11 Tf 72 538 Td (networks often improve accuracy but increase training cost and memory consumption. We) Tj ET
+BT /F1 11 Tf 72 524 Td (evaluate several architectures on a small benchmark dataset and compare their accuracy.) Tj ET
+BT /F2 12 Tf 72 500 Td (2. Methodology) Tj ET
+BT /F1 11 Tf 72 484 Td (Our method trains convolutional networks with different depths using stochastic gradient) Tj ET
+BT /F1 11 Tf 72 470 Td (descent. Each network is trained for fifty epochs and evaluated on a held out validation) Tj ET
+BT /F1 11 Tf 72 456 Td (set. We record accuracy, training time and memory usage for every architecture in the) Tj ET
+BT /F1 11 Tf 72 442 Td (experiment.) Tj ET
+
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R >>  >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 1813 >>
+stream
+BT /F2 12 Tf 72 740 Td (3. Results) Tj ET
+BT /F1 11 Tf 72 724 Td (The deeper network achieved higher accuracy than the shallow network on the validation) Tj ET
+BT /F1 11 Tf 72 710 Td (set. However training time increased substantially as network depth increased. These) Tj ET
+BT /F1 11 Tf 72 696 Td (results suggest that moderate depth gives the best trade off between accuracy and cost.) Tj ET
+BT /F2 11 Tf 72 670 Td (Model) Tj ET
+BT /F2 11 Tf 180 670 Td (Depth) Tj ET
+BT /F2 11 Tf 290 670 Td (Accuracy) Tj ET
+BT /F2 11 Tf 400 670 Td (Time) Tj ET
+BT /F1 11 Tf 72 654 Td (Net-A) Tj ET
+BT /F1 11 Tf 180 654 Td (8) Tj ET
+BT /F1 11 Tf 290 654 Td (81.2) Tj ET
+BT /F1 11 Tf 400 654 Td (12) Tj ET
+BT /F1 11 Tf 72 638 Td (Net-B) Tj ET
+BT /F1 11 Tf 180 638 Td (16) Tj ET
+BT /F1 11 Tf 290 638 Td (86.5) Tj ET
+BT /F1 11 Tf 400 638 Td (25) Tj ET
+BT /F1 11 Tf 72 622 Td (Net-C) Tj ET
+BT /F1 11 Tf 180 622 Td (32) Tj ET
+BT /F1 11 Tf 290 622 Td (88.1) Tj ET
+BT /F1 11 Tf 400 622 Td (61) Tj ET
+BT /F1 10 Tf 72 598 Td (Table 1. Accuracy and training time by depth.) Tj ET
+BT /F2 12 Tf 72 566 Td (4. Discussion) Tj ET
+BT /F1 11 Tf 72 550 Td (The deeper network achieved higher accuracy than the shallow network on the validation) Tj ET
+BT /F1 11 Tf 72 536 Td (set. However training time increased substantially as network depth increased. These) Tj ET
+BT /F1 11 Tf 72 522 Td (results suggest that moderate depth gives the best trade off between accuracy and cost.) Tj ET
+BT /F2 12 Tf 72 498 Td (5. Conclusion) Tj ET
+BT /F1 11 Tf 72 482 Td (We conclude that network depth improves accuracy with diminishing returns. Future work) Tj ET
+BT /F1 11 Tf 72 468 Td (will study regularisation and data augmentation for deep networks. This synthetic) Tj ET
+BT /F1 11 Tf 72 454 Td (document exists only to test the analysis pipeline.) Tj ET
+
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000191 00000 n 
+0000000266 00000 n 
+0000000403 00000 n 
+0000002483 00000 n 
+0000002620 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4485
+%%EOF
