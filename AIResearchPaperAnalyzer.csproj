@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>AIResearchPaperAnalyzer</RootNamespace>
     <AssemblyName>AIResearchPaperAnalyzer</AssemblyName>
-    <!-- The test project lives inside this folder; keep its files out of the web app. -->
-    <DefaultItemExcludes>$(DefaultItemExcludes);tests\**</DefaultItemExcludes>
+    <!-- Tests and page-pipeline output live inside this folder; keep their files out of the web app. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);tests\**;AIEngine\output\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <ItemGroup>

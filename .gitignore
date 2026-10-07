@@ -5,3 +5,5 @@ obj/
 Uploads/
 appsettings.Local.json
 TestResults/
+__pycache__/
+AIEngine/output/

@@ -8,3 +8,7 @@ pdfminer.six
 nltk
 scikit-learn
 pandas
+
+# V2 page pipeline (AIEngine/pipeline, Phase 2): page rendering and native text blocks.
+# Import name is "pymupdf" (legacy alias "fitz"). Verified with 1.28.2.
+PyMuPDF
