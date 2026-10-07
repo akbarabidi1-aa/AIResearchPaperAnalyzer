@@ -1,0 +1,10 @@
+{
+  "source": "../../fixtures/multicolumn/synthetic_two_column.pdf",
+  "bbox_space": "pdf",
+  "note": "Boxes written by hand from the positions used in tests/fixtures/make_synthetic_fixtures.py.",
+  "regions": [
+    {"page_number": 1, "type": "TITLE", "bbox": [72, 25, 262, 47]},
+    {"page_number": 1, "type": "TEXT", "bbox": [72, 70, 251, 183]},
+    {"page_number": 1, "type": "TEXT", "bbox": [320, 70, 518, 169]}
+  ]
+}

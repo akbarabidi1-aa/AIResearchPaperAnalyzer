@@ -7,3 +7,10 @@ appsettings.Local.json
 TestResults/
 __pycache__/
 AIEngine/output/
+
+# Phase 3 layout detection: debug renders, evaluation output, model files
+layout_debug/
+tests/layout_eval/output/
+.paddlex/
+*.pdiparams
+*.pdmodel

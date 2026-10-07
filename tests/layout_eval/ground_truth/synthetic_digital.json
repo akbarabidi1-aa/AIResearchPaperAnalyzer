@@ -1,0 +1,22 @@
+{
+  "source": "../../fixtures/digital/synthetic_digital.pdf",
+  "bbox_space": "pdf",
+  "note": "Boxes written by hand from the positions used in tests/fixtures/make_synthetic_fixtures.py.",
+  "regions": [
+    {"page_number": 1, "type": "TITLE", "bbox": [72, 35, 354, 57]},
+    {"page_number": 1, "type": "TITLE", "bbox": [72, 61, 123, 75]},
+    {"page_number": 1, "type": "TEXT", "bbox": [72, 77, 510, 133]},
+    {"page_number": 1, "type": "TITLE", "bbox": [72, 143, 157, 157]},
+    {"page_number": 1, "type": "TEXT", "bbox": [72, 159, 510, 271]},
+    {"page_number": 1, "type": "TITLE", "bbox": [72, 281, 161, 295]},
+    {"page_number": 1, "type": "TEXT", "bbox": [72, 297, 500, 353]},
+    {"page_number": 2, "type": "TITLE", "bbox": [72, 41, 130, 55]},
+    {"page_number": 2, "type": "TEXT", "bbox": [72, 57, 505, 99]},
+    {"page_number": 2, "type": "TABLE", "bbox": [72, 110, 426, 173]},
+    {"page_number": 2, "type": "CAPTION", "bbox": [72, 183, 273, 197]},
+    {"page_number": 2, "type": "TITLE", "bbox": [72, 215, 150, 229]},
+    {"page_number": 2, "type": "TEXT", "bbox": [72, 231, 505, 273]},
+    {"page_number": 2, "type": "TITLE", "bbox": [72, 283, 152, 297]},
+    {"page_number": 2, "type": "TEXT", "bbox": [72, 299, 506, 341]}
+  ]
+}

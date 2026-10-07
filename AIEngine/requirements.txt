@@ -12,3 +12,12 @@ pandas
 # V2 page pipeline (AIEngine/pipeline, Phase 2): page rendering and native text blocks.
 # Import name is "pymupdf" (legacy alias "fitz"). Verified with 1.28.2.
 PyMuPDF
+
+# V2 layout detection (AIEngine/pipeline/layout.py, Phase 3): PP-DocLayoutV3 through PaddleOCR's
+# standalone LayoutDetection module. Base install only (no paddleocr[...] extras); CPU build of PaddlePaddle.
+# Verified with paddlepaddle 3.3.1 + paddleocr 3.7.0 (pulls in paddlex 3.7.2) on Python 3.10, Windows.
+# The model (about 125 MB) is downloaded to ~/.paddlex/official_models on first use.
+paddlepaddle==3.3.1
+paddleocr==3.7.0
+# Layout debug images (--visualize-layout). Also a dependency of paddlex. Verified with 12.3.0.
+Pillow
