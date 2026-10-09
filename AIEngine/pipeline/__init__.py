@@ -1,5 +1,5 @@
 """V2 document-processing pipeline. Phase 2: page rendering and native page extraction.
-Phase 3: layout detection (typed page regions).
+Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback.
 
 Runs alongside the V1 engine (ai_engine.py); V1 does not import this package.
 """
@@ -32,12 +32,34 @@ from .layout import (
 )
 from .layout_eval import bbox_iou, class_accuracy, match_regions
 from .native_extract import extract_native_pages, page_has_text_layer
-from .page_pipeline import default_work_dir, process_pdf, validate_pages_document
+from .ocr import (
+    DEFAULT_OCR_PADDING,
+    OCREngine,
+    OcrCropError,
+    OcrError,
+    OcrInputError,
+    OcrLine,
+    OcrModelError,
+    PaddleOCREngine,
+    Routing,
+    clean_line,
+    crop_box,
+    join_lines,
+    load_layout_document,
+    route_region,
+    run_document_ocr,
+    should_ocr,
+    summarize_ocr_document,
+    validate_ocr_document,
+)
+from .ocr_eval import cer, compare_ocr_documents, edit_counts, wer
+from .page_pipeline import default_work_dir, has_current_pages, process_pdf, validate_pages_document
 from .render import DEFAULT_DPI, pdf_bbox_to_pixels, render_pdf_pages
 
 __all__ = [
     "DEFAULT_DPI",
     "DEFAULT_LAYOUT_THRESHOLD",
+    "DEFAULT_OCR_PADDING",
     "EmptyPdfError",
     "InvalidPdfError",
     "LayoutDetectionError",
@@ -45,8 +67,15 @@ __all__ = [
     "LayoutError",
     "LayoutInputError",
     "LayoutModelError",
+    "OCREngine",
+    "OcrCropError",
+    "OcrError",
+    "OcrInputError",
+    "OcrLine",
+    "OcrModelError",
     "OutputDirectoryError",
     "PPDocLayoutV3Detector",
+    "PaddleOCREngine",
     "PageExtractionError",
     "PageRenderError",
     "PdfNotFoundError",
@@ -54,13 +83,22 @@ __all__ = [
     "RawDetection",
     "Region",
     "RegionType",
+    "Routing",
     "bbox_iou",
+    "cer",
     "class_accuracy",
+    "clean_line",
+    "compare_ocr_documents",
     "count_region_types",
+    "crop_box",
     "default_work_dir",
     "detect_document_layout",
+    "edit_counts",
     "extract_native_pages",
+    "has_current_pages",
     "image_bbox_to_pdf",
+    "join_lines",
+    "load_layout_document",
     "match_regions",
     "normalize_detections",
     "normalize_label",
@@ -68,6 +106,12 @@ __all__ = [
     "pdf_bbox_to_pixels",
     "process_pdf",
     "render_pdf_pages",
+    "route_region",
+    "run_document_ocr",
+    "should_ocr",
+    "summarize_ocr_document",
     "validate_layout_document",
+    "validate_ocr_document",
     "validate_pages_document",
+    "wer",
 ]

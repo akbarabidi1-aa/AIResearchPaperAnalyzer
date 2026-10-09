@@ -114,6 +114,24 @@ def default_work_dir(pdf_path, base_dir):
     return os.path.join(os.fspath(base_dir), f"{safe}-{_sha256(pdf_path)[:8]}")
 
 
+def has_current_pages(work_dir, pdf_path, dpi=DEFAULT_DPI):
+    """True when `work_dir` already holds what process_pdf would write for this PDF at this DPI:
+    a valid pages.json with the file's SHA-256, native text lines, and every page image."""
+    work_dir = os.fspath(work_dir)
+    try:
+        with open(os.path.join(work_dir, METADATA_DIR, PAGES_JSON), encoding="utf-8") as fh:
+            document = json.load(fh)
+        if validate_pages_document(document):
+            return False
+        return (document["document"].get("source_sha256") == _sha256(pdf_path)
+                and document["document"].get("dpi") == dpi
+                and all("lines" in block for page in document["pages"] for block in page["blocks"])
+                and all(os.path.isfile(os.path.join(work_dir, *page["image_path"].split("/")))
+                        for page in document["pages"]))
+    except (OSError, ValueError):
+        return False
+
+
 def validate_pages_document(document):
     """Structural check of a pages.json object. Returns a list of problems (empty = valid)."""
     problems = []
@@ -126,6 +144,20 @@ def validate_pages_document(document):
         return value if ok else None
 
     number = (int, float)
+
+    def check_bbox(bbox, where, width, height):
+        if bbox is None:
+            return
+        if len(bbox) != 4 or not all(isinstance(v, number) and not isinstance(v, bool) for v in bbox):
+            problems.append(f"{where}.bbox is not four numbers")
+            return
+        x0, y0, x1, y1 = bbox
+        if not (x0 < x1 and y0 < y1):
+            problems.append(f"{where}.bbox is empty or inverted")
+        elif isinstance(width, number) and isinstance(height, number) and \
+                not (0 <= x0 and 0 <= y0 and x1 <= width and y1 <= height):
+            problems.append(f"{where}.bbox lies outside the page")
+
     if not isinstance(document, dict):
         return ["root is not an object"]
 
@@ -159,18 +191,13 @@ def validate_pages_document(document):
             bwhere = f"{where}.blocks[{j}]"
             need(block, "text", str, bwhere)
             need(block, "block_type", str, bwhere)
-            bbox = need(block, "bbox", list, bwhere)
-            if bbox is None:
-                continue
-            if len(bbox) != 4 or not all(isinstance(v, number) and not isinstance(v, bool) for v in bbox):
-                problems.append(f"{bwhere}.bbox is not four numbers")
-                continue
-            x0, y0, x1, y1 = bbox
-            if not (x0 < x1 and y0 < y1):
-                problems.append(f"{bwhere}.bbox is empty or inverted")
-            elif isinstance(width, number) and isinstance(height, number) and \
-                    not (0 <= x0 and 0 <= y0 and x1 <= width and y1 <= height):
-                problems.append(f"{bwhere}.bbox lies outside the page")
+            check_bbox(need(block, "bbox", list, bwhere), bwhere, width, height)
+            # "lines" was added in Phase 4; a pages.json written before that has none.
+            if isinstance(block, dict) and "lines" in block:
+                for k, line in enumerate(need(block, "lines", list, bwhere) or []):
+                    lwhere = f"{bwhere}.lines[{k}]"
+                    need(line, "text", str, lwhere)
+                    check_bbox(need(line, "bbox", list, lwhere), lwhere, width, height)
 
     return problems
 

@@ -39,7 +39,8 @@ def extract_native_pages(pdf_path):
     """Return one dict per page of `pdf_path`, in page order (page numbers are 1-based):
 
         {"page_number", "width", "height", "has_text_layer", "text",
-         "blocks": [{"block_index", "bbox": [x0, y0, x1, y1], "text", "block_type": "text"}]}
+         "blocks": [{"block_index", "bbox": [x0, y0, x1, y1], "text", "block_type": "text",
+                     "lines": [{"bbox": [x0, y0, x1, y1], "text"}]}]}
     """
     with open_pdf(pdf_path) as doc:
         return extract_document(doc)
@@ -65,13 +66,28 @@ def _extract_page(page, page_number):
     # PyMuPDF reports text positions in the UNROTATED page; this matrix moves them to the page as
     # displayed and rendered (identity when /Rotate is 0), so boxes always line up with the image.
     to_displayed = page.rotation_matrix
+
+    def displayed(rect):
+        box = (pymupdf.Rect(rect) * to_displayed).normalize()
+        return _clamp_to_page([box.x0, box.y0, box.x1, box.y1], width, height)
+
+    # One text page for both views, so the block numbers of "blocks" and "dict" are the same.
+    textpage = page.get_textpage(flags=pymupdf.TEXTFLAGS_BLOCKS)
+    lines_by_block = {}
+    for block in page.get_text("dict", textpage=textpage)["blocks"]:
+        lines = lines_by_block.setdefault(block["number"], [])
+        for line in block.get("lines", ()):
+            line_text = "".join(span["text"] for span in line["spans"])
+            line_bbox = displayed(line["bbox"])
+            if line_text.strip() and line_bbox is not None:
+                lines.append({"bbox": line_bbox, "text": line_text})
+
     blocks = []
     # Blocks come in the order of the PDF content stream; reading order is not reconstructed here.
-    for x0, y0, x1, y1, block_text, _block_no, block_type in page.get_text("blocks"):
+    for x0, y0, x1, y1, block_text, block_no, block_type in page.get_text("blocks", textpage=textpage):
         if block_type != _TEXT_BLOCK or not block_text.strip():
             continue
-        box = (pymupdf.Rect(x0, y0, x1, y1) * to_displayed).normalize()
-        bbox = _clamp_to_page([box.x0, box.y0, box.x1, box.y1], width, height)
+        bbox = displayed((x0, y0, x1, y1))
         if bbox is None:
             continue
         blocks.append({
@@ -79,6 +95,8 @@ def _extract_page(page, page_number):
             "bbox": bbox,
             "text": block_text.strip("\n"),
             "block_type": "text",
+            # A block often joins a heading and its paragraph; the lines let later phases split it.
+            "lines": lines_by_block.get(block_no, []),
         })
 
     return {

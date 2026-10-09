@@ -142,7 +142,12 @@ All derive from `PdfPipelineError`.
 - `blocks` come from `page.get_text("blocks")`. Only text blocks are kept; image blocks are ignored.
 - Every block is `block_type: "text"`. Nothing is classified (no headings, tables, figures, equations).
 - Blocks are in PDF content-stream order. Reading order is **not** reconstructed.
-- A block is MuPDF's grouping of nearby lines, usually a paragraph. It is not a semantic unit.
+- A block is MuPDF's grouping of nearby lines, usually a paragraph. It is not a semantic unit: a heading
+  and the paragraph under it are often one block.
+- Since Phase 4 every block also has `lines`: `[{ "bbox": [x0, y0, x1, y1], "text": "..." }]`, from
+  `page.get_text("dict")` on the same text page. Phase 4 uses them to give each layout region its own
+  text. Nothing else in a block changed; a `pages.json` written before Phase 4 has no `lines` and must
+  be regenerated before running Phase 4.
 
 ## Coordinate system
 
@@ -265,6 +270,7 @@ UTF-8, no BOM, non-ASCII characters written as-is.
 | `pages[].text` | string | Full native page text, may be empty |
 | `pages[].blocks[].bbox` | 4 numbers | Points, inside the page |
 | `pages[].blocks[].block_type` | string | Always `"text"` in Phase 2 |
+| `pages[].blocks[].lines[]` | `{bbox, text}` | The lines of the block, same coordinates. Added in Phase 4; joined with line breaks they give the block's `text` |
 | `pages[].image_path` | string | Relative to the working directory, forward slashes |
 
 `validate_pages_document(data)` checks this structure and returns a list of problems (empty when valid).

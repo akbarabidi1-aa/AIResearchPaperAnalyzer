@@ -19,5 +19,9 @@ PyMuPDF
 # The model (about 125 MB) is downloaded to ~/.paddlex/official_models on first use.
 paddlepaddle==3.3.1
 paddleocr==3.7.0
-# Layout debug images (--visualize-layout). Also a dependency of paddlex. Verified with 12.3.0.
+# V2 selective OCR (AIEngine/pipeline/ocr.py, Phase 4): PP-OCRv5 through the TextDetection and
+# TextRecognition modules of the same paddleocr install. No new package. The models PP-OCRv5_mobile_det
+# (4.7 MB) and en_PP-OCRv5_mobile_rec (7.6 MB) are downloaded to ~/.paddlex/official_models on first use.
+# Layout debug images (--visualize-layout) and OCR region crops. Also a dependency of paddlex.
+# Verified with 12.3.0.
 Pillow

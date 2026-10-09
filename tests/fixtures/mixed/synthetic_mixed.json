@@ -1,0 +1,12 @@
+{
+  "heading": "1. Mixed Content Page",
+  "native_above": "This first paragraph is ordinary selectable text stored in the document. It describes a page that mixes two kinds of content, and it must be read from the text layer without any recognition step.",
+  "image_text": "This second paragraph was pasted into the page as a picture. Its words are visible to a reader but absent from the text layer, so the pipeline has to recognize them from the pixels of the rendered page.",
+  "native_below": "This third paragraph is selectable text again. It follows the picture and shows that the routing decision is taken for every region and not once for the whole page.",
+  "image_pdf_bbox": [
+    72.0,
+    190.0,
+    540.0,
+    240.0
+  ]
+}

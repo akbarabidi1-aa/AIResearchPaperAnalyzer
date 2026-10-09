@@ -14,3 +14,6 @@ tests/layout_eval/output/
 .paddlex/
 *.pdiparams
 *.pdmodel
+
+# Phase 4 OCR: debug crops (--save-ocr-crops)
+ocr_crops/
