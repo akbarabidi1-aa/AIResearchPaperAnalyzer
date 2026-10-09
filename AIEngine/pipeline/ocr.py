@@ -286,18 +286,24 @@ def join_lines(lines):
     with a line break. Every fragment is cleaned with clean_line; nothing is corrected, re-hyphenated
     or rewritten.
     """
+    cleaned = [(bbox, clean_line(text)) for bbox, text in lines]
+    rows = group_rows([item for item in cleaned if item[1]])
+    return "\n".join(" ".join(text for _, text in row) for row in rows)
+
+
+def group_rows(items):
+    """Put items whose first element is a box [x0, y0, x1, y1] into rows: top to bottom, each row left
+    to right. Two items are in the same row when each one's vertical centre lies inside the other."""
     rows = []
-    for bbox, text in sorted(lines, key=lambda item: ((item[0][1] + item[0][3]) / 2, item[0][0])):
-        text = clean_line(text)
-        if not text:
-            continue
+    for item in sorted(items, key=lambda item: ((item[0][1] + item[0][3]) / 2, item[0][0])):
+        bbox = item[0]
         centre = (bbox[1] + bbox[3]) / 2
         first = rows[-1][0][0] if rows else None
         if first and first[1] <= centre <= first[3] and bbox[1] <= (first[1] + first[3]) / 2 <= bbox[3]:
-            rows[-1].append((bbox, text))
+            rows[-1].append(item)
         else:
-            rows.append([(bbox, text)])
-    return "\n".join(" ".join(text for _, text in sorted(row, key=lambda item: item[0][0])) for row in rows)
+            rows.append([item])
+    return [sorted(row, key=lambda item: item[0][0]) for row in rows]
 
 
 def is_usable_text(text):
@@ -368,6 +374,8 @@ def region_confidence(lines):
     weights = [len(clean_line(line.text).replace(" ", "")) for line in lines]
     if not sum(weights):
         return None
+    if len(lines) == 1:     # kept exactly, without rounding noise from the weighting
+        return lines[0].confidence
     return sum(line.confidence * weight for line, weight in zip(lines, weights)) / sum(weights)
 
 

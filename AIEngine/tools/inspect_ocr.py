@@ -45,38 +45,49 @@ def has_current_layout(work_dir, threshold):
     return layout["model"]["threshold"] == threshold
 
 
-def main(argv=None):
-    parser = argparse.ArgumentParser(description="Region text with selective OCR (Phase 4).")
-    parser.add_argument("input", help="a PDF, or a working directory of Phase 2 / Phase 3")
+def add_work_dir_arguments(parser):
+    """The arguments shared by the tools that start from a PDF or a working directory."""
+    parser.add_argument("input", help="a PDF, or a working directory of earlier phases")
     parser.add_argument("--output", help="working directory for a PDF input (default: AIEngine/output/<name>-<hash>)")
     parser.add_argument("--dpi", type=int, default=DEFAULT_DPI,
                         help=f"render resolution for a PDF input (default {DEFAULT_DPI})")
     parser.add_argument("--layout-threshold", type=float, default=DEFAULT_LAYOUT_THRESHOLD,
                         help=f"minimum layout detection score, 0-1 (default {DEFAULT_LAYOUT_THRESHOLD})")
+    parser.add_argument("--force", action="store_true", help="run the earlier phases again even if present")
+    parser.add_argument("--device", default="cpu", help="inference device (default cpu)")
+
+
+def prepare_work_dir(args):
+    """Make sure the working directory holds pages.json and layout.json for `args`, reusing what is
+    there. Returns (work_dir, pages_reused, layout_reused). Raises PdfPipelineError or ValueError."""
+    threshold = check_threshold(args.layout_threshold)
+    if os.path.isdir(args.input):
+        work_dir, pages_reused = args.input, True
+    else:
+        work_dir = args.output or default_work_dir(args.input, os.path.join(ENGINE_DIR, "output"))
+        pages_reused = not args.force and has_current_pages(work_dir, args.input, args.dpi)
+        if not pages_reused:
+            process_pdf(args.input, work_dir, dpi=args.dpi)
+    layout_reused = pages_reused and not args.force and has_current_layout(work_dir, threshold)
+    if not layout_reused:
+        detect_document_layout(work_dir, PPDocLayoutV3Detector(device=args.device), threshold=threshold)
+    return work_dir, pages_reused, layout_reused
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Region text with selective OCR (Phase 4).")
+    add_work_dir_arguments(parser)
     parser.add_argument("--ocr-padding", type=int, default=DEFAULT_OCR_PADDING,
                         help=f"pixels of page added around a region before OCR (default {DEFAULT_OCR_PADDING})")
     parser.add_argument("--ocr-tables", action="store_true",
                         help="also OCR table regions without native text, as raw text lines (no cells)")
     parser.add_argument("--save-ocr-crops", action="store_true",
                         help="also save ocr_crops/page_NNN_region_NNN.png for every OCR'd region")
-    parser.add_argument("--force", action="store_true", help="run Phase 2 and Phase 3 again even if present")
-    parser.add_argument("--device", default="cpu", help="inference device (default cpu)")
     args = parser.parse_args(argv)
 
     try:
-        threshold = check_threshold(args.layout_threshold)
         check_padding(args.ocr_padding)
-        if os.path.isdir(args.input):
-            work_dir, pages_reused = args.input, True
-        else:
-            work_dir = args.output or default_work_dir(args.input, os.path.join(ENGINE_DIR, "output"))
-            pages_reused = not args.force and has_current_pages(work_dir, args.input, args.dpi)
-            if not pages_reused:
-                process_pdf(args.input, work_dir, dpi=args.dpi)
-        layout_reused = pages_reused and not args.force and has_current_layout(work_dir, threshold)
-        if not layout_reused:
-            detect_document_layout(work_dir, PPDocLayoutV3Detector(device=args.device), threshold=threshold)
-
+        work_dir, pages_reused, layout_reused = prepare_work_dir(args)
         engine = PaddleOCREngine(device=args.device)
         result = run_document_ocr(work_dir, engine, padding=args.ocr_padding, ocr_tables=args.ocr_tables,
                                   save_crops=args.save_ocr_crops)

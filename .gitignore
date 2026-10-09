@@ -17,3 +17,6 @@ tests/layout_eval/output/
 
 # Phase 4 OCR: debug crops (--save-ocr-crops)
 ocr_crops/
+
+# Phase 5 tables: debug overlays (--visualize-tables)
+tables_debug/

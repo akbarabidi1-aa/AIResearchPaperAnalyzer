@@ -1,5 +1,5 @@
 """V2 document-processing pipeline. Phase 2: page rendering and native page extraction.
-Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback.
+Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells.
 
 Runs alongside the V1 engine (ai_engine.py); V1 does not import this package.
 """
@@ -55,6 +55,26 @@ from .ocr import (
 from .ocr_eval import cer, compare_ocr_documents, edit_counts, wer
 from .page_pipeline import default_work_dir, has_current_pages, process_pdf, validate_pages_document
 from .render import DEFAULT_DPI, pdf_bbox_to_pixels, render_pdf_pages
+from .tables import (
+    SLANetPlusStructureModel,
+    StructureCell,
+    TableError,
+    TableExtractionError,
+    TableExtractor,
+    TableInputError,
+    TableModelError,
+    TableStructure,
+    TableStructureModel,
+    associate_captions,
+    detect_header_rows,
+    parse_native_table,
+    parse_structure_tokens,
+    run_document_tables,
+    summarize_tables_document,
+    table_grid,
+    validate_tables_document,
+)
+from .tables_eval import evaluate_table, evaluate_tables
 
 __all__ = [
     "DEFAULT_DPI",
@@ -114,4 +134,24 @@ __all__ = [
     "validate_ocr_document",
     "validate_pages_document",
     "wer",
+    # Phase 5
+    "SLANetPlusStructureModel",
+    "StructureCell",
+    "TableError",
+    "TableExtractionError",
+    "TableExtractor",
+    "TableInputError",
+    "TableModelError",
+    "TableStructure",
+    "TableStructureModel",
+    "associate_captions",
+    "detect_header_rows",
+    "evaluate_table",
+    "evaluate_tables",
+    "parse_native_table",
+    "parse_structure_tokens",
+    "run_document_tables",
+    "summarize_tables_document",
+    "table_grid",
+    "validate_tables_document",
 ]

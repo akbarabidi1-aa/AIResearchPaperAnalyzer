@@ -1,0 +1,168 @@
+{
+  "tables": [
+    {
+      "page_number": 1,
+      "kind": "bordered",
+      "bordered": true,
+      "caption": "Table 1. Statistics of the three synthetic datasets.",
+      "pdf_bbox": [
+        90.0,
+        215.0,
+        480.0,
+        303.0
+      ],
+      "header_rows": [
+        0
+      ],
+      "n_rows": 4,
+      "n_columns": 4,
+      "grid": [
+        [
+          "Dataset",
+          "Classes",
+          "Train",
+          "Test"
+        ],
+        [
+          "Alpha",
+          "10",
+          "50,000",
+          "10,000"
+        ],
+        [
+          "Beta",
+          "100",
+          "73,257",
+          "26,032"
+        ],
+        [
+          "Gamma",
+          "200",
+          "100,000",
+          "5,000"
+        ]
+      ],
+      "merged_cells": []
+    },
+    {
+      "page_number": 2,
+      "kind": "borderless",
+      "bordered": false,
+      "caption": "Table 2. Comparison with baselines on the Alpha dataset.",
+      "pdf_bbox": [
+        90.0,
+        215.0,
+        480.0,
+        369.0
+      ],
+      "header_rows": [
+        0
+      ],
+      "n_rows": 7,
+      "n_columns": 4,
+      "grid": [
+        [
+          "Method",
+          "Accuracy",
+          "F1",
+          "Time"
+        ],
+        [
+          "Linear",
+          "71.25",
+          "70.90",
+          "3.5"
+        ],
+        [
+          "MLP",
+          "80.00",
+          "79.42",
+          "6.0"
+        ],
+        [
+          "ConvNet",
+          "88.13",
+          "87.60",
+          "14.2"
+        ],
+        [
+          "ResNet",
+          "92.10",
+          "91.40",
+          "31.0"
+        ],
+        [
+          "ViT",
+          "94.70",
+          "94.10",
+          "58.4"
+        ],
+        [
+          "Ours",
+          "95.32",
+          "95.01",
+          "40.7"
+        ]
+      ],
+      "merged_cells": []
+    },
+    {
+      "page_number": 3,
+      "kind": "merged_header",
+      "bordered": true,
+      "caption": "Table 3. Accuracy and size of the ablated models.",
+      "pdf_bbox": [
+        90.0,
+        215.0,
+        480.0,
+        325.0
+      ],
+      "header_rows": [
+        0,
+        1
+      ],
+      "n_rows": 5,
+      "n_columns": 4,
+      "grid": [
+        [
+          "Model",
+          "Accuracy",
+          "",
+          "Params"
+        ],
+        [
+          "",
+          "Top-1",
+          "Top-5",
+          ""
+        ],
+        [
+          "Small",
+          "81.20",
+          "95.10",
+          "5.3"
+        ],
+        [
+          "Base",
+          "86.50",
+          "97.42",
+          "21.8"
+        ],
+        [
+          "Large",
+          "88.10",
+          "98.00",
+          "86.0"
+        ]
+      ],
+      "merged_cells": [
+        {
+          "row": 0,
+          "column": 1,
+          "row_span": 1,
+          "col_span": 2
+        }
+      ]
+    }
+  ]
+}
