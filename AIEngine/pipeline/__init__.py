@@ -1,8 +1,18 @@
 """V2 document-processing pipeline. Phase 2: page rendering and native page extraction.
-Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells. Phase 6: equations as LaTeX.
+Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells. Phase 6: equations as LaTeX. Phase 7: figures and chart data.
 
 Runs alongside the V1 engine (ai_engine.py); V1 does not import this package.
 """
+from .charts import (
+    ChartError,
+    ChartExtractionError,
+    ChartExtractor,
+    ChartText,
+    RuleBasedChartExtractor,
+    calibrate_axis,
+    find_plot_area,
+    parse_number,
+)
 from .common import (
     EmptyPdfError,
     InvalidPdfError,
@@ -12,6 +22,22 @@ from .common import (
     PdfNotFoundError,
     PdfPipelineError,
 )
+from .figures import (
+    DEFAULT_FIGURE_PADDING,
+    FigureError,
+    FigureExtractionError,
+    FigureExtractor,
+    FigureInputError,
+    associate_figure_captions,
+    caption_candidates,
+    classify_figure_image,
+    figure_crop_boxes,
+    parse_figure_number,
+    run_document_figures,
+    summarize_figures_document,
+    validate_figures_document,
+)
+from .figures_eval import evaluate_chart, evaluate_figures
 from .layout import (
     DEFAULT_LAYOUT_THRESHOLD,
     LayoutDetectionError,
@@ -198,4 +224,28 @@ __all__ = [
     "summarize_equations_document",
     "validate_equations_document",
     "validate_latex",
+    # Phase 7
+    "ChartError",
+    "ChartExtractionError",
+    "ChartExtractor",
+    "ChartText",
+    "DEFAULT_FIGURE_PADDING",
+    "FigureError",
+    "FigureExtractionError",
+    "FigureExtractor",
+    "FigureInputError",
+    "RuleBasedChartExtractor",
+    "associate_figure_captions",
+    "calibrate_axis",
+    "caption_candidates",
+    "classify_figure_image",
+    "evaluate_chart",
+    "evaluate_figures",
+    "figure_crop_boxes",
+    "find_plot_area",
+    "parse_figure_number",
+    "parse_number",
+    "run_document_figures",
+    "summarize_figures_document",
+    "validate_figures_document",
 ]

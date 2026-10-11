@@ -31,8 +31,16 @@ paddleocr==3.7.0
 # (about 250 MB) is downloaded to ~/.paddlex/official_models on first use.
 tokenizers
 ftfy
-# Only to regenerate tests/fixtures/equations (make_equation_fixtures.py): matplotlib, verified with 3.10.9.
+# V2 figure and chart extraction (AIEngine/pipeline/figures.py and charts.py, Phase 7): rules and
+# geometry, no model and no download. Figure text is read by the PP-OCRv5 engine of Phase 4. The chart
+# reader uses numpy (a dependency of paddlex) and OpenCV. OpenCV was already in the environment, in the
+# build paddlex pins for its OCR modules; it is listed here because Phase 7 imports it directly.
+# Verified with opencv-contrib-python 4.10.0.84 and numpy 2.2.6. Nothing was installed for Phase 7.
+opencv-contrib-python==4.10.0.84
+# Only to regenerate tests/fixtures/equations and tests/fixtures/figures (make_equation_fixtures.py,
+# make_figure_fixtures.py): matplotlib, verified with 3.10.9.
 # It is not needed to run the pipeline or the tests and is therefore not listed as a requirement.
-# Layout debug images (--visualize-layout), OCR region crops, table overlays and equation crops. Also a dependency of paddlex.
+# Layout debug images (--visualize-layout), OCR region crops, table overlays, equation crops, figure crops
+# and chart overlays. Also a dependency of paddlex.
 # Verified with 12.3.0.
 Pillow

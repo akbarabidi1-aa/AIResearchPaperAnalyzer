@@ -1,0 +1,584 @@
+{
+  "figures": [
+    {
+      "page_number": 1,
+      "kind": "architecture_diagram",
+      "figure_type": "diagram",
+      "pdf_bbox": [
+        139.0,
+        126.0,
+        473.0,
+        190.0
+      ],
+      "caption": "Overview of the proposed architecture.",
+      "figure_number": "Figure 1",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        198.0,
+        264.58,
+        210.37
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          198.0,
+          264.58,
+          210.37
+        ]
+      ],
+      "labels": [
+        "Input",
+        "Backbone",
+        "Transformer",
+        "Classifier"
+      ]
+    },
+    {
+      "page_number": 1,
+      "kind": "generic_image",
+      "figure_type": "image",
+      "pdf_bbox": [
+        186.0,
+        280.37,
+        426.0,
+        440.37
+      ],
+      "caption": "Qualitative example produced by the method.",
+      "figure_number": "Fig. 2",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        448.37,
+        280.6,
+        460.73
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          448.37,
+          280.6,
+          460.73
+        ]
+      ],
+      "labels": []
+    },
+    {
+      "page_number": 2,
+      "kind": "bar_chart_value_labels",
+      "figure_type": "chart",
+      "pdf_bbox": [
+        170.73,
+        126.0,
+        441.27,
+        315.64
+      ],
+      "caption": "Accuracy of four models on the benchmark.",
+      "figure_number": "Figure 3",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        323.64,
+        283.59,
+        336.01
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          323.64,
+          283.59,
+          336.01
+        ]
+      ],
+      "chart": {
+        "chart_type": "bar",
+        "title": "Top-1 accuracy",
+        "x_axis": {
+          "title": "Model",
+          "ticks": [
+            "ResNet",
+            "ViT",
+            "ConvNeXt",
+            "Swin"
+          ]
+        },
+        "y_axis": {
+          "title": "Accuracy (%)",
+          "ticks": [
+            "0",
+            "20",
+            "40",
+            "60",
+            "80",
+            "100"
+          ]
+        },
+        "legend": [],
+        "series": [
+          {
+            "name": null,
+            "bars": [
+              {
+                "category": "ResNet",
+                "value": 72.1
+              },
+              {
+                "category": "ViT",
+                "value": 84.7
+              },
+              {
+                "category": "ConvNeXt",
+                "value": 63.4
+              },
+              {
+                "category": "Swin",
+                "value": 91.2
+              }
+            ]
+          }
+        ],
+        "value_labels": true
+      }
+    },
+    {
+      "page_number": 2,
+      "kind": "line_chart_caption_above",
+      "figure_type": "chart",
+      "pdf_bbox": [
+        172.01,
+        426.38,
+        439.99,
+        606.21
+      ],
+      "caption": "Training loss over six epochs.",
+      "figure_number": "Figure 4",
+      "caption_position": "above",
+      "caption_pdf_bbox": [
+        72.0,
+        406.01,
+        228.55,
+        418.38
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          406.01,
+          228.55,
+          418.38
+        ]
+      ],
+      "chart": {
+        "chart_type": "line",
+        "title": null,
+        "x_axis": {
+          "title": "Epoch",
+          "ticks": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ]
+        },
+        "y_axis": {
+          "title": "Loss",
+          "ticks": [
+            "0.0",
+            "0.5",
+            "1.0",
+            "1.5",
+            "2.0",
+            "2.5"
+          ]
+        },
+        "legend": [],
+        "series": [
+          {
+            "name": null,
+            "points": [
+              {
+                "x": 1,
+                "y": 2.1
+              },
+              {
+                "x": 2,
+                "y": 1.3
+              },
+              {
+                "x": 3,
+                "y": 1.0
+              },
+              {
+                "x": 4,
+                "y": 0.6
+              },
+              {
+                "x": 5,
+                "y": 0.5
+              },
+              {
+                "x": 6,
+                "y": 0.3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 3,
+      "kind": "scatter_plot",
+      "figure_type": "chart",
+      "pdf_bbox": [
+        166.91,
+        126.0,
+        445.09,
+        305.84
+      ],
+      "caption": "Accuracy against model size.",
+      "figure_number": "Figure 5",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        313.84,
+        226.56,
+        326.21
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          313.84,
+          226.56,
+          326.21
+        ]
+      ],
+      "chart": {
+        "chart_type": "scatter",
+        "title": null,
+        "x_axis": {
+          "title": "Parameters (M)",
+          "ticks": [
+            "0",
+            "20",
+            "40",
+            "60",
+            "80",
+            "100"
+          ]
+        },
+        "y_axis": {
+          "title": "Accuracy (%)",
+          "ticks": [
+            "50",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100"
+          ]
+        },
+        "legend": [],
+        "series": [
+          {
+            "name": null,
+            "points": [
+              {
+                "x": 5,
+                "y": 62
+              },
+              {
+                "x": 12,
+                "y": 68
+              },
+              {
+                "x": 18,
+                "y": 66
+              },
+              {
+                "x": 25,
+                "y": 74
+              },
+              {
+                "x": 31,
+                "y": 71
+              },
+              {
+                "x": 38,
+                "y": 79
+              },
+              {
+                "x": 44,
+                "y": 77
+              },
+              {
+                "x": 52,
+                "y": 83
+              },
+              {
+                "x": 60,
+                "y": 81
+              },
+              {
+                "x": 67,
+                "y": 88
+              },
+              {
+                "x": 75,
+                "y": 86
+              },
+              {
+                "x": 84,
+                "y": 92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 3,
+      "kind": "multi_series_line_chart_legend",
+      "figure_type": "chart",
+      "pdf_bbox": [
+        172.01,
+        396.21,
+        439.99,
+        585.85
+      ],
+      "caption": "Validation accuracy of two methods.",
+      "figure_number": "Figure 6",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        593.85,
+        254.08,
+        606.21
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          593.85,
+          254.08,
+          606.21
+        ]
+      ],
+      "chart": {
+        "chart_type": "line",
+        "title": "Validation accuracy",
+        "x_axis": {
+          "title": "Epoch",
+          "ticks": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ]
+        },
+        "y_axis": {
+          "title": "Accuracy",
+          "ticks": [
+            "0.2",
+            "0.4",
+            "0.6",
+            "0.8",
+            "1.0"
+          ]
+        },
+        "legend": [
+          "Method A",
+          "Method B"
+        ],
+        "series": [
+          {
+            "name": "Method A",
+            "points": [
+              {
+                "x": 1,
+                "y": 0.52
+              },
+              {
+                "x": 2,
+                "y": 0.66
+              },
+              {
+                "x": 3,
+                "y": 0.71
+              },
+              {
+                "x": 4,
+                "y": 0.8
+              },
+              {
+                "x": 5,
+                "y": 0.82
+              }
+            ]
+          },
+          {
+            "name": "Method B",
+            "points": [
+              {
+                "x": 1,
+                "y": 0.4
+              },
+              {
+                "x": 2,
+                "y": 0.47
+              },
+              {
+                "x": 3,
+                "y": 0.6
+              },
+              {
+                "x": 4,
+                "y": 0.64
+              },
+              {
+                "x": 5,
+                "y": 0.75
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 4,
+      "kind": "two_column_bar_chart",
+      "figure_type": "chart",
+      "pdf_bbox": [
+        75.08,
+        138.0,
+        290.92,
+        287.04
+      ],
+      "caption": "Error on three datasets.",
+      "figure_number": "Figure 7",
+      "caption_position": "below",
+      "caption_pdf_bbox": [
+        72.0,
+        317.04,
+        204.56,
+        329.41
+      ],
+      "caption_candidates": [
+        [
+          72.0,
+          317.04,
+          204.56,
+          329.41
+        ]
+      ],
+      "chart": {
+        "chart_type": "bar",
+        "title": null,
+        "x_axis": {
+          "title": "Dataset",
+          "ticks": [
+            "Set A",
+            "Set B",
+            "Set C"
+          ]
+        },
+        "y_axis": {
+          "title": "Error",
+          "ticks": [
+            "0",
+            "5",
+            "10",
+            "15"
+          ]
+        },
+        "legend": [],
+        "series": [
+          {
+            "name": null,
+            "bars": [
+              {
+                "category": "Set A",
+                "value": 12.0
+              },
+              {
+                "category": "Set B",
+                "value": 7.5
+              },
+              {
+                "category": "Set C",
+                "value": 4.0
+              }
+            ]
+          }
+        ],
+        "value_labels": false
+      }
+    },
+    {
+      "page_number": 4,
+      "kind": "two_column_diagram_caption_above",
+      "figure_type": "diagram",
+      "pdf_bbox": [
+        327.0,
+        297.41,
+        531.0,
+        355.41
+      ],
+      "caption": "Two-stage variant.",
+      "figure_number": "Fig. 8(a)",
+      "caption_position": "above",
+      "caption_pdf_bbox": [
+        318.0,
+        277.04,
+        428.03,
+        289.41
+      ],
+      "caption_candidates": [
+        [
+          318.0,
+          277.04,
+          428.03,
+          289.41
+        ]
+      ],
+      "labels": [
+        "Encoder",
+        "Decoder"
+      ]
+    },
+    {
+      "page_number": 5,
+      "kind": "ambiguous_captions",
+      "figure_type": "diagram",
+      "pdf_bbox": [
+        154.0,
+        146.37,
+        458.0,
+        210.37
+      ],
+      "caption": null,
+      "figure_number": null,
+      "caption_position": null,
+      "caption_pdf_bbox": null,
+      "caption_candidates": [
+        [
+          72.0,
+          126.0,
+          269.6,
+          138.37
+        ],
+        [
+          72.0,
+          218.37,
+          273.6,
+          230.73
+        ]
+      ],
+      "labels": [
+        "Stage 1",
+        "Stage 2",
+        "Stage 3"
+      ]
+    }
+  ]
+}
