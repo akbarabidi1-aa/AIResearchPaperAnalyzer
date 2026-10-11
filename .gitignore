@@ -20,3 +20,6 @@ ocr_crops/
 
 # Phase 5 tables: debug overlays (--visualize-tables)
 tables_debug/
+
+# Phase 6 equations: crops (--save-equation-crops, and equations that were not recognized)
+equation_crops/

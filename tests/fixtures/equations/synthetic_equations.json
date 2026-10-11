@@ -1,0 +1,202 @@
+{
+  "equations": [
+    {
+      "page_number": 1,
+      "kind": "simple_algebra",
+      "font": "cm",
+      "latex": "y = mx + b",
+      "equation_number": null,
+      "pdf_bbox": [
+        273.5,
+        166.0,
+        338.5,
+        183.0
+      ],
+      "number_pdf_bbox": null
+    },
+    {
+      "page_number": 1,
+      "kind": "summation",
+      "font": "cm",
+      "latex": "L = -\\sum_i y_i \\log(p_i)",
+      "equation_number": "(1)",
+      "pdf_bbox": [
+        252.5,
+        263.0,
+        359.5,
+        295.0
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        273.0,
+        540.0,
+        286.0
+      ]
+    },
+    {
+      "page_number": 1,
+      "kind": "fraction",
+      "font": "stix",
+      "latex": "z = \\frac{x+y}{2}",
+      "equation_number": "(2)",
+      "pdf_bbox": [
+        285.5,
+        375.0,
+        326.5,
+        397.0
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        380.0,
+        540.0,
+        393.0
+      ]
+    },
+    {
+      "page_number": 2,
+      "kind": "square_root",
+      "font": "cm",
+      "latex": "\\sqrt{x^2 + y^2}",
+      "equation_number": null,
+      "pdf_bbox": [
+        274.5,
+        166.0,
+        337.5,
+        189.0
+      ],
+      "number_pdf_bbox": null
+    },
+    {
+      "page_number": 2,
+      "kind": "greek",
+      "font": "stix",
+      "latex": "\\alpha + \\beta = \\lambda",
+      "equation_number": null,
+      "pdf_bbox": [
+        281.0,
+        269.0,
+        331.0,
+        285.58
+      ],
+      "number_pdf_bbox": null
+    },
+    {
+      "page_number": 2,
+      "kind": "subscript_superscript",
+      "font": "dejavusans",
+      "latex": "x_i^2",
+      "equation_number": null,
+      "pdf_bbox": [
+        296.5,
+        365.58,
+        315.5,
+        385.58
+      ],
+      "number_pdf_bbox": null
+    },
+    {
+      "page_number": 3,
+      "kind": "integral",
+      "font": "stix",
+      "latex": "\\int_a^b f(x)\\,dx",
+      "equation_number": "(3)",
+      "pdf_bbox": [
+        281.0,
+        166.0,
+        331.0,
+        192.0
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        173.0,
+        540.0,
+        186.0
+      ]
+    },
+    {
+      "page_number": 3,
+      "kind": "numbered",
+      "font": "cm",
+      "latex": "E = mc^2",
+      "equation_number": "(4)",
+      "pdf_bbox": [
+        280.0,
+        272.0,
+        332.0,
+        289.0
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        274.5,
+        540.0,
+        287.5
+      ]
+    },
+    {
+      "page_number": 3,
+      "kind": "matrix",
+      "font": "cm",
+      "latex": "A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}",
+      "equation_number": "(5)",
+      "pdf_bbox": [
+        262.5,
+        369.0,
+        349.5,
+        413.0
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        385.0,
+        540.0,
+        398.0
+      ]
+    },
+    {
+      "page_number": 4,
+      "kind": "multiline_aligned",
+      "font": "stix",
+      "latex": "\\begin{aligned} f(x) &= (x+1)^2 \\\\ &= x^2 + 2x + 1 \\end{aligned}",
+      "equation_number": "(6)",
+      "pdf_bbox": [
+        258.0,
+        166.0,
+        354.0,
+        205.7
+      ],
+      "number_pdf_bbox": [
+        526.56,
+        179.85,
+        540.0,
+        192.85
+      ]
+    },
+    {
+      "page_number": 4,
+      "kind": "symbol_fidelity_digits",
+      "font": "cm",
+      "latex": "x_0 \\times l_1 = 10",
+      "equation_number": null,
+      "pdf_bbox": [
+        271.5,
+        285.7,
+        340.5,
+        302.7
+      ],
+      "number_pdf_bbox": null
+    },
+    {
+      "page_number": 4,
+      "kind": "symbol_fidelity_greek",
+      "font": "stix",
+      "latex": "\\lambda A = a - \\alpha",
+      "equation_number": null,
+      "pdf_bbox": [
+        277.5,
+        382.7,
+        334.5,
+        399.28
+      ],
+      "number_pdf_bbox": null
+    }
+  ]
+}

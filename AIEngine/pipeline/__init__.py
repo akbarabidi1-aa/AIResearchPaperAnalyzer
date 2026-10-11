@@ -1,5 +1,5 @@
 """V2 document-processing pipeline. Phase 2: page rendering and native page extraction.
-Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells.
+Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells. Phase 6: equations as LaTeX.
 
 Runs alongside the V1 engine (ai_engine.py); V1 does not import this package.
 """
@@ -31,6 +31,27 @@ from .layout import (
     validate_layout_document,
 )
 from .layout_eval import bbox_iou, class_accuracy, match_regions
+from .math_eval import canonical_latex, evaluate_equation, evaluate_equations, latex_cer
+from .math_ocr import (
+    DEFAULT_EQUATION_PADDING,
+    MathError,
+    MathInputError,
+    MathModelError,
+    MathPrediction,
+    MathRecognitionError,
+    MathRecognizer,
+    PPFormulaNetRecognizer,
+    crop_equation,
+    equation_crop_box,
+    find_equation_numbers,
+    normalize_latex,
+    parse_equation_number,
+    run_document_equations,
+    split_tag,
+    summarize_equations_document,
+    validate_equations_document,
+    validate_latex,
+)
 from .native_extract import extract_native_pages, page_has_text_layer
 from .ocr import (
     DEFAULT_OCR_PADDING,
@@ -154,4 +175,27 @@ __all__ = [
     "summarize_tables_document",
     "table_grid",
     "validate_tables_document",
+    # Phase 6
+    "DEFAULT_EQUATION_PADDING",
+    "MathError",
+    "MathInputError",
+    "MathModelError",
+    "MathPrediction",
+    "MathRecognitionError",
+    "MathRecognizer",
+    "PPFormulaNetRecognizer",
+    "canonical_latex",
+    "crop_equation",
+    "equation_crop_box",
+    "evaluate_equation",
+    "evaluate_equations",
+    "find_equation_numbers",
+    "latex_cer",
+    "normalize_latex",
+    "parse_equation_number",
+    "run_document_equations",
+    "split_tag",
+    "summarize_equations_document",
+    "validate_equations_document",
+    "validate_latex",
 ]

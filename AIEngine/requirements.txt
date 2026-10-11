@@ -25,6 +25,14 @@ paddleocr==3.7.0
 # V2 table extraction (AIEngine/pipeline/tables.py, Phase 5): SLANet_plus through the
 # TableStructureRecognition module of the same paddleocr install. No new package. The model (7.6 MB) is
 # downloaded to ~/.paddlex/official_models on first use.
-# Layout debug images (--visualize-layout), OCR region crops and table overlays. Also a dependency of paddlex.
+# V2 equation recognition (AIEngine/pipeline/math_ocr.py, Phase 6): PP-FormulaNet_plus-S through the
+# FormulaRecognition module of the same paddleocr install. Its decoder needs two small packages that the
+# base install of paddleocr does not pull in. Verified with tokenizers 0.23.3 and ftfy 6.3.1. The model
+# (about 250 MB) is downloaded to ~/.paddlex/official_models on first use.
+tokenizers
+ftfy
+# Only to regenerate tests/fixtures/equations (make_equation_fixtures.py): matplotlib, verified with 3.10.9.
+# It is not needed to run the pipeline or the tests and is therefore not listed as a requirement.
+# Layout debug images (--visualize-layout), OCR region crops, table overlays and equation crops. Also a dependency of paddlex.
 # Verified with 12.3.0.
 Pillow
