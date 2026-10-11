@@ -37,7 +37,12 @@ ftfy
 # build paddlex pins for its OCR modules; it is listed here because Phase 7 imports it directly.
 # Verified with opencv-contrib-python 4.10.0.84 and numpy 2.2.6. Nothing was installed for Phase 7.
 opencv-contrib-python==4.10.0.84
-# Only to regenerate tests/fixtures/equations and tests/fixtures/figures (make_equation_fixtures.py,
+# V2 document reconstruction (AIEngine/pipeline/reading_order.py, sections.py, document_builder.py,
+# Phase 8): geometry and rules, no model. document.json is validated against
+# AIEngine/schema/document.schema.json with jsonschema (pure Python; pulls in attrs, referencing,
+# jsonschema-specifications and rpds-py). Verified with jsonschema 4.26.0.
+jsonschema
+# Only to regenerate tests/fixtures/equations, tests/fixtures/figures and tests/fixtures/document (make_equation_fixtures.py,
 # make_figure_fixtures.py): matplotlib, verified with 3.10.9.
 # It is not needed to run the pipeline or the tests and is therefore not listed as a requirement.
 # Layout debug images (--visualize-layout), OCR region crops, table overlays, equation crops, figure crops

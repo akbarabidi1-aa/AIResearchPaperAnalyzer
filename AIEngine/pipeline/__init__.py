@@ -1,5 +1,5 @@
 """V2 document-processing pipeline. Phase 2: page rendering and native page extraction.
-Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells. Phase 6: equations as LaTeX. Phase 7: figures and chart data.
+Phase 3: layout detection (typed page regions). Phase 4: region text, native first, OCR as fallback. Phase 5: table rows, columns and cells. Phase 6: equations as LaTeX. Phase 7: figures and chart data. Phase 8: reading order, sections, document.json.
 
 Runs alongside the V1 engine (ai_engine.py); V1 does not import this package.
 """
@@ -22,6 +22,21 @@ from .common import (
     PdfNotFoundError,
     PdfPipelineError,
 )
+from .document_builder import (
+    DOCUMENT_SCHEMA_VERSION,
+    DocumentError,
+    DocumentInputError,
+    DocumentValidationError,
+    build_document,
+    check_document_integrity,
+    check_information_loss,
+    find_mentions,
+    is_continuation,
+    load_artifacts,
+    summarize_document,
+    validate_document,
+)
+from .document_eval import evaluate_document, match_blocks
 from .figures import (
     DEFAULT_FIGURE_PADDING,
     FigureError,
@@ -101,7 +116,9 @@ from .ocr import (
 )
 from .ocr_eval import cer, compare_ocr_documents, edit_counts, wer
 from .page_pipeline import default_work_dir, has_current_pages, process_pdf, validate_pages_document
+from .reading_order import detect_columns, exact_order, order_blocks, pairwise_order_accuracy
 from .render import DEFAULT_DPI, pdf_bbox_to_pixels, render_pdf_pages
+from .sections import build_sections, looks_like_heading, parse_heading, special_section_type
 from .tables import (
     SLANetPlusStructureModel,
     StructureCell,
@@ -248,4 +265,27 @@ __all__ = [
     "run_document_figures",
     "summarize_figures_document",
     "validate_figures_document",
+    # Phase 8
+    "DOCUMENT_SCHEMA_VERSION",
+    "DocumentError",
+    "DocumentInputError",
+    "DocumentValidationError",
+    "build_document",
+    "build_sections",
+    "check_document_integrity",
+    "check_information_loss",
+    "detect_columns",
+    "evaluate_document",
+    "exact_order",
+    "find_mentions",
+    "is_continuation",
+    "load_artifacts",
+    "looks_like_heading",
+    "match_blocks",
+    "order_blocks",
+    "pairwise_order_accuracy",
+    "parse_heading",
+    "special_section_type",
+    "summarize_document",
+    "validate_document",
 ]

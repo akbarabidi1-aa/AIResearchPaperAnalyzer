@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://airesearchpaperanalyzer.local/schema/document.schema.json",
+  "title": "Reconstructed scientific document (Phase 8)",
+  "description": "document.json: the blocks of a PDF in reading order, grouped into sections, with its tables, figures and equations. Coordinates are PDF points, origin top-left, [x0, y0, x1, y1].",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["document", "sections", "blocks", "pages", "tables", "figures", "equations", "metadata", "provenance", "summary"],
+  "properties": {
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "page_count", "source_pdf", "source_sha256", "schema_version"],
+      "properties": {
+        "title": {"type": ["string", "null"]},
+        "page_count": {"type": "integer", "minimum": 1},
+        "source_pdf": {"type": ["string", "null"]},
+        "source_sha256": {"type": ["string", "null"]},
+        "schema_version": {"const": "1.0"}
+      }
+    },
+    "sections": {"type": "array", "items": {"$ref": "#/$defs/section"}},
+    "blocks": {"type": "array", "items": {"$ref": "#/$defs/block"}},
+    "pages": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/page"}},
+    "tables": {"type": "array", "items": {"$ref": "#/$defs/table"}},
+    "figures": {"type": "array", "items": {"$ref": "#/$defs/figure"}},
+    "equations": {"type": "array", "items": {"$ref": "#/$defs/equation"}},
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["headers", "footers", "page_numbers"],
+      "properties": {
+        "headers": {"type": "array", "items": {"$ref": "#/$defs/furniture"}},
+        "footers": {"type": "array", "items": {"$ref": "#/$defs/furniture"}},
+        "page_numbers": {"type": "array", "items": {"$ref": "#/$defs/furniture"}}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["artifacts", "coordinate_system", "counts"],
+      "properties": {
+        "artifacts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pages", "layout", "ocr", "tables", "equations", "figures"],
+          "properties": {
+            "pages": {"type": "string"},
+            "layout": {"type": "string"},
+            "ocr": {"type": "string"},
+            "tables": {"type": ["string", "null"]},
+            "equations": {"type": ["string", "null"]},
+            "figures": {"type": ["string", "null"]}
+          }
+        },
+        "coordinate_system": {"type": "object"},
+        "counts": {
+          "type": "object",
+          "required": ["layout_regions", "blocks", "problems"],
+          "properties": {"problems": {"type": "array", "maxItems": 0}}
+        }
+      }
+    },
+    "summary": {"type": "object"}
+  },
+  "$defs": {
+    "bbox": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"type": "number"}
+    },
+    "id": {"type": "string", "minLength": 1},
+    "nullable_id": {"type": ["string", "null"], "minLength": 1},
+    "nullable_text": {"type": ["string", "null"]},
+    "furniture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["block_id", "page_number", "text"],
+      "properties": {
+        "block_id": {"$ref": "#/$defs/id"},
+        "page_number": {"type": "integer", "minimum": 1},
+        "text": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "label", "target_block_id"],
+      "properties": {
+        "kind": {"enum": ["figure", "table", "equation", "section"]},
+        "label": {"type": "string", "minLength": 1},
+        "target_block_id": {"$ref": "#/$defs/nullable_id"}
+      }
+    },
+    "part": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["block_id", "page_number", "bbox", "text", "source"],
+      "properties": {
+        "block_id": {"$ref": "#/$defs/id"},
+        "page_number": {"type": "integer", "minimum": 1},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "text": {"type": "string"},
+        "source": {"enum": ["native", "ocr"]}
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["block_id", "page_number", "type", "bbox", "text", "source", "confidence", "section_id", "order",
+                   "flow", "column", "full_width", "source_region_id", "source_label", "references"],
+      "properties": {
+        "block_id": {"type": "string", "pattern": "^page_[0-9]{3,}_block_[0-9]{3,}$"},
+        "page_number": {"type": "integer", "minimum": 1},
+        "type": {"enum": ["TITLE", "HEADING", "PARAGRAPH", "LIST", "TABLE", "FIGURE", "CHART", "EQUATION", "CAPTION",
+                          "HEADER", "FOOTER", "PAGE_NUMBER", "OTHER"]},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "text": {"$ref": "#/$defs/nullable_text"},
+        "source": {"enum": ["native", "ocr", null]},
+        "confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "section_id": {"$ref": "#/$defs/nullable_id"},
+        "order": {"type": ["integer", "null"], "minimum": 0},
+        "flow": {"enum": ["main", "attached", "merged", "furniture"]},
+        "column": {"type": ["integer", "null"], "minimum": 0},
+        "full_width": {"type": "boolean"},
+        "source_region_id": {"$ref": "#/$defs/id"},
+        "source_label": {"$ref": "#/$defs/id"},
+        "references": {"type": "array", "items": {"$ref": "#/$defs/reference"}},
+        "attached_to": {"$ref": "#/$defs/id"},
+        "merged_into": {"$ref": "#/$defs/id"},
+        "parts": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/part"}},
+        "table_id": {"$ref": "#/$defs/id"},
+        "figure_id": {"$ref": "#/$defs/id"},
+        "equation_id": {"$ref": "#/$defs/id"},
+        "caption": {"$ref": "#/$defs/nullable_text"},
+        "figure_type": {"enum": ["figure", "chart", "diagram", "image", "unknown"]},
+        "figure_number": {"$ref": "#/$defs/nullable_text"},
+        "latex": {"$ref": "#/$defs/nullable_text"},
+        "equation_number": {"$ref": "#/$defs/nullable_text"},
+        "status": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {"if": {"properties": {"type": {"const": "TABLE"}}}, "then": {"required": ["table_id", "caption", "status"]}},
+        {"if": {"properties": {"type": {"enum": ["FIGURE", "CHART"]}}},
+         "then": {"required": ["figure_id", "figure_type", "figure_number", "caption", "status"]}},
+        {"if": {"properties": {"type": {"const": "EQUATION"}}},
+         "then": {"required": ["equation_id", "latex", "equation_number", "status"]}},
+        {"if": {"properties": {"flow": {"const": "main"}}},
+         "then": {"properties": {"order": {"type": "integer"}, "section_id": {"type": "string"}}},
+         "else": {"properties": {"order": {"type": "null"}}}},
+        {"if": {"properties": {"flow": {"const": "attached"}}}, "then": {"required": ["attached_to"]}},
+        {"if": {"properties": {"flow": {"const": "merged"}}}, "then": {"required": ["merged_into"]}},
+        {"if": {"properties": {"type": {"enum": ["TABLE", "FIGURE", "CHART", "EQUATION"]}}},
+         "else": {"not": {"anyOf": [{"required": ["table_id"]}, {"required": ["figure_id"]},
+                                    {"required": ["equation_id"]}]}}}
+      ]
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["section_id", "title", "number", "level", "parent_id", "section_type", "heading_block_id",
+                   "implicit", "page_start", "page_end", "blocks"],
+      "properties": {
+        "section_id": {"type": "string", "pattern": "^sec_[a-z0-9_]+$"},
+        "title": {"$ref": "#/$defs/nullable_text"},
+        "number": {"$ref": "#/$defs/nullable_text"},
+        "level": {"type": "integer", "minimum": 1},
+        "parent_id": {"$ref": "#/$defs/nullable_id"},
+        "section_type": {"enum": ["front_matter", "abstract", "body", "references", "acknowledgments", "appendix"]},
+        "heading_block_id": {"$ref": "#/$defs/nullable_id"},
+        "implicit": {"type": "boolean"},
+        "page_start": {"type": ["integer", "null"], "minimum": 1},
+        "page_end": {"type": ["integer", "null"], "minimum": 1},
+        "blocks": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true}
+      }
+    },
+    "page": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_number", "width", "height", "layout", "columns", "gutters", "block_ids", "header_block_ids",
+                   "footer_block_ids", "page_number_block_ids"],
+      "properties": {
+        "page_number": {"type": "integer", "minimum": 1},
+        "width": {"type": "number", "exclusiveMinimum": 0},
+        "height": {"type": "number", "exclusiveMinimum": 0},
+        "layout": {"enum": ["single_column", "two_column", "multi_column", "unknown"]},
+        "columns": {"type": "array", "items": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number"}}},
+        "gutters": {"type": "array", "items": {"type": "number"}},
+        "block_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true},
+        "header_block_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "footer_block_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "page_number_block_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}}
+      }
+    },
+    "object_base": {
+      "type": "object",
+      "required": ["source_id", "block_id", "page_number", "bbox", "status", "error"],
+      "properties": {
+        "source_id": {"$ref": "#/$defs/nullable_id"},
+        "block_id": {"$ref": "#/$defs/id"},
+        "page_number": {"type": "integer", "minimum": 1},
+        "bbox": {"$ref": "#/$defs/bbox"},
+        "error": {"$ref": "#/$defs/nullable_text"}
+      }
+    },
+    "table": {
+      "allOf": [{"$ref": "#/$defs/object_base"}],
+      "required": ["table_id", "caption", "caption_block_id", "n_rows", "n_columns", "header_rows", "headers", "rows",
+                   "extraction_source"],
+      "properties": {
+        "table_id": {"type": "string", "pattern": "^page_[0-9]{3,}_table_[0-9]{3,}$"},
+        "status": {"enum": ["ok", "failed", "not_extracted"]},
+        "caption": {"$ref": "#/$defs/nullable_text"},
+        "caption_block_id": {"$ref": "#/$defs/nullable_id"},
+        "n_rows": {"type": "integer", "minimum": 0},
+        "n_columns": {"type": "integer", "minimum": 0},
+        "header_rows": {"type": ["array", "null"], "items": {"type": "integer"}},
+        "headers": {"type": ["array", "null"], "items": {"type": "string"}},
+        "rows": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}},
+        "extraction_source": {"enum": ["native", "vision", "hybrid", null]}
+      }
+    },
+    "figure": {
+      "allOf": [{"$ref": "#/$defs/object_base"}],
+      "required": ["figure_id", "figure_type", "figure_number", "caption", "caption_block_id", "image_path", "labels",
+                   "chart_data"],
+      "properties": {
+        "figure_id": {"type": "string", "pattern": "^page_[0-9]{3,}_figure_[0-9]{3,}$"},
+        "status": {"enum": ["ok", "failed", "not_extracted"]},
+        "figure_type": {"enum": ["figure", "chart", "diagram", "image", "unknown"]},
+        "figure_number": {"$ref": "#/$defs/nullable_text"},
+        "caption": {"$ref": "#/$defs/nullable_text"},
+        "caption_block_id": {"$ref": "#/$defs/nullable_id"},
+        "image_path": {"$ref": "#/$defs/nullable_text"},
+        "labels": {"type": "array", "items": {"type": "string"}},
+        "chart_data": {"type": ["object", "null"]}
+      }
+    },
+    "equation": {
+      "allOf": [{"$ref": "#/$defs/object_base"}],
+      "required": ["equation_id", "latex", "normalized_latex", "equation_number", "equation_number_block_id",
+                   "image_path"],
+      "properties": {
+        "equation_id": {"type": "string", "pattern": "^page_[0-9]{3,}_equation_[0-9]{3,}$"},
+        "status": {"enum": ["success", "invalid_latex", "recognition_failed", "not_extracted"]},
+        "latex": {"$ref": "#/$defs/nullable_text"},
+        "normalized_latex": {"$ref": "#/$defs/nullable_text"},
+        "equation_number": {"$ref": "#/$defs/nullable_text"},
+        "equation_number_block_id": {"$ref": "#/$defs/nullable_id"},
+        "image_path": {"$ref": "#/$defs/nullable_text"}
+      }
+    }
+  }
+}

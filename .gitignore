@@ -27,3 +27,7 @@ equation_crops/
 # Phase 7 figures: figure crops (always written), padded crops and chart overlays (--save-figure-debug)
 figure_images/
 figure_crops/
+
+# Phase 8 document reconstruction: reading-order images (--visualize-order). document.json itself is
+# written into the working directory of a PDF (AIEngine/output/ or the --output directory), not the repo.
+order_debug/

@@ -1,0 +1,1453 @@
+{
+ "documents": {
+  "synthetic_paper_two_column": {
+   "pages": 3,
+   "columns": 2,
+   "sections": [
+    {
+     "key": "front",
+     "title": null,
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "front_matter"
+    },
+    {
+     "key": "abstract",
+     "title": "Abstract",
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "abstract"
+    },
+    {
+     "key": "1",
+     "title": "Introduction",
+     "number": "1",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "2",
+     "title": "Related Work",
+     "number": "2",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "3",
+     "title": "Methodology",
+     "number": "3",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "3.1",
+     "title": "Feature Extraction",
+     "number": "3.1",
+     "level": 2,
+     "parent": "3",
+     "section_type": "body"
+    },
+    {
+     "key": "3.2",
+     "title": "Training Objective",
+     "number": "3.2",
+     "level": 2,
+     "parent": "3",
+     "section_type": "body"
+    },
+    {
+     "key": "4",
+     "title": "Experiments",
+     "number": "4",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "5",
+     "title": "Conclusion",
+     "number": "5",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "references",
+     "title": "References",
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "references"
+    }
+   ],
+   "blocks": [
+    {
+     "key": "p1_header",
+     "page_number": 1,
+     "type": "HEADER",
+     "label": "header",
+     "pdf_bbox": [
+      54.0,
+      28.0,
+      231.41,
+      38.99
+     ],
+     "text": "Synthetic Journal of Document Analysis 12 (2024)",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "p1_page_number",
+     "page_number": 1,
+     "type": "PAGE_NUMBER",
+     "label": "number",
+     "pdf_bbox": [
+      295.0,
+      800.0,
+      300.0,
+      812.37
+     ],
+     "text": "1",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "title",
+     "page_number": 1,
+     "type": "TITLE",
+     "label": "doc_title",
+     "pdf_bbox": [
+      98.36,
+      75.0,
+      496.64,
+      96.98
+     ],
+     "text": "Reading Order in Two-Column Scientific Documents",
+     "flow": "main",
+     "section": "front"
+    },
+    {
+     "key": "authors",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      192.73,
+      104.98,
+      402.27,
+      118.72
+     ],
+     "text": "Ada Example, Ben Sample and Cy Placeholder",
+     "flow": "main",
+     "section": "front"
+    },
+    {
+     "key": "abstract_heading",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      274.18,
+      131.98,
+      320.82,
+      147.79
+     ],
+     "text": "Abstract",
+     "flow": "main",
+     "section": "abstract"
+    },
+    {
+     "key": "abstract_text",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "abstract",
+     "pdf_bbox": [
+      90.0,
+      153.79,
+      505.0,
+      204.13
+     ],
+     "text": "This abstract spans the full width of the page. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page.",
+     "flow": "main",
+     "section": "abstract"
+    },
+    {
+     "key": "h_introduction",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      223.13,
+      130.67,
+      238.93
+     ],
+     "text": "1 Introduction",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_1",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      244.93,
+      286.0,
+      342.77
+     ],
+     "text": "Introduction opens in the left column. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_2",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      351.77,
+      286.0,
+      473.36
+     ],
+     "text": "Second introduction paragraph stays in the left column. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_3",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      482.36,
+      286.0,
+      603.95
+     ],
+     "text": "Third introduction paragraph closes the left column. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_4",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      220.13,
+      541.0,
+      329.84
+     ],
+     "text": "Fourth introduction paragraph starts the right column. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "h_related",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      309.0,
+      341.84,
+      392.08,
+      357.64
+     ],
+     "text": "2 Related Work",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "related_1",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      363.64,
+      541.0,
+      485.23
+     ],
+     "text": "Related work is discussed in the right column. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents.",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "related_2",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      494.23,
+      541.0,
+      615.82
+     ],
+     "text": "Earlier systems sorted regions from top to bottom. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "p2_header",
+     "page_number": 2,
+     "type": "HEADER",
+     "label": "header",
+     "pdf_bbox": [
+      54.0,
+      28.0,
+      231.41,
+      38.99
+     ],
+     "text": "Synthetic Journal of Document Analysis 12 (2024)",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "p2_page_number",
+     "page_number": 2,
+     "type": "PAGE_NUMBER",
+     "label": "number",
+     "pdf_bbox": [
+      295.0,
+      800.0,
+      300.0,
+      812.37
+     ],
+     "text": "2",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "h_method",
+     "page_number": 2,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      75.0,
+      135.14,
+      90.8
+     ],
+     "text": "3 Methodology",
+     "flow": "main",
+     "section": "3"
+    },
+    {
+     "key": "method_1",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      96.8,
+      286.0,
+      159.02
+     ],
+     "text": "Methodology begins on the second page. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it.",
+     "flow": "main",
+     "section": "3"
+    },
+    {
+     "key": "h_features",
+     "page_number": 2,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      171.02,
+      158.48,
+      184.76
+     ],
+     "text": "3.1 Feature Extraction",
+     "flow": "main",
+     "section": "3.1"
+    },
+    {
+     "key": "features_1",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      190.76,
+      286.0,
+      229.22
+     ],
+     "text": "Features are computed for every region as Running headers and page numbers are kept apart from the body of the document.",
+     "flow": "main",
+     "section": "3.1"
+    },
+    {
+     "key": "equation_1",
+     "page_number": 2,
+     "type": "EQUATION",
+     "label": "display_formula",
+     "pdf_bbox": [
+      149.5,
+      233.22,
+      190.5,
+      255.22
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "3.1",
+     "latex": "z = \\frac{x+y}{2}",
+     "equation_number": "(1)"
+    },
+    {
+     "key": "equation_1_number",
+     "page_number": 2,
+     "type": "OTHER",
+     "label": "formula_number",
+     "pdf_bbox": [
+      274.39,
+      237.57,
+      286.0,
+      250.62
+     ],
+     "text": "(1)",
+     "flow": "attached",
+     "section": "3.1",
+     "attached_to": "equation_1"
+    },
+    {
+     "key": "features_2",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      263.22,
+      286.0,
+      313.56
+     ],
+     "text": "The equation above, Eq. (1), stands inside the left column. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents.",
+     "flow": "main",
+     "section": "3.1"
+    },
+    {
+     "key": "features_3",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      72.0,
+      541.0,
+      193.59
+     ],
+     "text": "Right column text above the wide figure. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document.",
+     "flow": "main",
+     "section": "3.1"
+    },
+    {
+     "key": "features_4",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      202.59,
+      541.0,
+      288.56
+     ],
+     "text": "More right column text above the wide figure. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "3.1"
+    },
+    {
+     "key": "figure_wide",
+     "page_number": 2,
+     "type": "FIGURE",
+     "label": "image",
+     "pdf_bbox": [
+      75.5,
+      328.56,
+      519.5,
+      388.56
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "3.1",
+     "figure_number": "Figure 1",
+     "caption": "Overview of the processing stages."
+    },
+    {
+     "key": "figure_wide_caption",
+     "page_number": 2,
+     "type": "CAPTION",
+     "label": "figure_title",
+     "pdf_bbox": [
+      54.0,
+      394.56,
+      222.18,
+      406.24
+     ],
+     "text": "Figure 1: Overview of the processing stages.",
+     "flow": "attached",
+     "section": "3.1",
+     "attached_to": "figure_wide"
+    },
+    {
+     "key": "h_objective",
+     "page_number": 2,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      423.24,
+      157.93,
+      436.98
+     ],
+     "text": "3.2 Training Objective",
+     "flow": "main",
+     "section": "3.2"
+    },
+    {
+     "key": "objective_1",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      442.98,
+      286.0,
+      552.69
+     ],
+     "text": "Below Figure 1 the left column continues the method of Section 3.1. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "3.2"
+    },
+    {
+     "key": "objective_2",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      561.69,
+      286.0,
+      671.41
+     ],
+     "text": "Another left column paragraph below the figure. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "3.2"
+    },
+    {
+     "key": "objective_3",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      420.24,
+      541.0,
+      470.58
+     ],
+     "text": "The chart below sits inside the right column. Regions are located first and their content is recognized afterwards. The remaining terms of the objective are weighted by a factor that depends on",
+     "flow": "main",
+     "section": "3.2",
+     "continued_by": "objective_4"
+    },
+    {
+     "key": "figure_column",
+     "page_number": 2,
+     "type": "CHART",
+     "label": "chart",
+     "pdf_bbox": [
+      325.22,
+      479.58,
+      524.78,
+      620.92
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "3.2",
+     "figure_number": "Figure 2",
+     "caption": "Error on three datasets."
+    },
+    {
+     "key": "figure_column_caption",
+     "page_number": 2,
+     "type": "CAPTION",
+     "label": "figure_title",
+     "pdf_bbox": [
+      309.0,
+      626.92,
+      434.2,
+      638.6
+     ],
+     "text": "Figure 2: Error on three datasets.",
+     "flow": "attached",
+     "section": "3.2",
+     "attached_to": "figure_column"
+    },
+    {
+     "key": "p3_header",
+     "page_number": 3,
+     "type": "HEADER",
+     "label": "header",
+     "pdf_bbox": [
+      54.0,
+      28.0,
+      231.41,
+      38.99
+     ],
+     "text": "Synthetic Journal of Document Analysis 12 (2024)",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "p3_page_number",
+     "page_number": 3,
+     "type": "PAGE_NUMBER",
+     "label": "number",
+     "pdf_bbox": [
+      295.0,
+      800.0,
+      300.0,
+      812.37
+     ],
+     "text": "3",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "objective_4",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      72.0,
+      286.0,
+      122.34
+     ],
+     "text": "the number of training steps completed so far. Captions are attached to the object they describe and are not read a second time. The approach is evaluated on three collections of scanned and digital documents.",
+     "flow": "main",
+     "section": "3.2",
+     "continues": "objective_3"
+    },
+    {
+     "key": "h_experiments",
+     "page_number": 3,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      134.34,
+      132.61,
+      150.14
+     ],
+     "text": "4 Experiments",
+     "flow": "main",
+     "section": "4"
+    },
+    {
+     "key": "experiments_1",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      156.14,
+      286.0,
+      265.86
+     ],
+     "text": "Experiments are reported in the left column and in Table 1. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document.",
+     "flow": "main",
+     "section": "4"
+    },
+    {
+     "key": "experiments_2",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      72.0,
+      541.0,
+      193.59
+     ],
+     "text": "Right column text above the wide table. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "4"
+    },
+    {
+     "key": "experiments_3",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      309.0,
+      202.59,
+      541.0,
+      252.93
+     ],
+     "text": "Last right column paragraph above the table. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "4"
+    },
+    {
+     "key": "table_wide",
+     "page_number": 3,
+     "type": "TABLE",
+     "label": "table",
+     "pdf_bbox": [
+      54.0,
+      300.54,
+      541.0,
+      368.54
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "4",
+     "grid": [
+      [
+       "Dataset",
+       "Pages",
+       "Regions",
+       "Accuracy"
+      ],
+      [
+       "Alpha",
+       "120",
+       "1,840",
+       "91.2"
+      ],
+      [
+       "Beta",
+       "310",
+       "4,975",
+       "88.7"
+      ],
+      [
+       "Gamma",
+       "95",
+       "1,102",
+       "93.5"
+      ]
+     ],
+     "caption": "Table 1: Results on three datasets."
+    },
+    {
+     "key": "table_caption",
+     "page_number": 3,
+     "type": "CAPTION",
+     "label": "figure_title",
+     "pdf_bbox": [
+      54.0,
+      280.86,
+      185.82,
+      292.54
+     ],
+     "text": "Table 1: Results on three datasets.",
+     "flow": "attached",
+     "section": "4",
+     "attached_to": "table_wide"
+    },
+    {
+     "key": "h_conclusion",
+     "page_number": 3,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      387.54,
+      126.21,
+      403.34
+     ],
+     "text": "5 Conclusion",
+     "flow": "main",
+     "section": "5"
+    },
+    {
+     "key": "conclusion_1",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      409.34,
+      286.0,
+      519.05
+     ],
+     "text": "The conclusion is the last section of the body. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents.",
+     "flow": "main",
+     "section": "5"
+    },
+    {
+     "key": "conclusion_2",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      528.05,
+      286.0,
+      614.02
+     ],
+     "text": "Final remarks end the left column. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "5"
+    },
+    {
+     "key": "h_references",
+     "page_number": 3,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      309.0,
+      387.54,
+      371.0,
+      403.34
+     ],
+     "text": "References",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_1",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      309.0,
+      409.34,
+      541.0,
+      447.8
+     ],
+     "text": "[1] A. Author and B. Writer. A study of synthetic documents, part 1. Proceedings of the Workshop on Fixtures, pages 10-19, 2021.",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_2",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      309.0,
+      451.8,
+      541.0,
+      490.27
+     ],
+     "text": "[2] A. Author and B. Writer. A study of synthetic documents, part 2. Proceedings of the Workshop on Fixtures, pages 20-29, 2022.",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_3",
+     "page_number": 3,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      309.0,
+      494.27,
+      541.0,
+      532.73
+     ],
+     "text": "[3] A. Author and B. Writer. A study of synthetic documents, part 3. Proceedings of the Workshop on Fixtures, pages 30-39, 2023.",
+     "flow": "main",
+     "section": "references"
+    }
+   ]
+  },
+  "synthetic_paper_single_column": {
+   "pages": 2,
+   "columns": 1,
+   "sections": [
+    {
+     "key": "front",
+     "title": null,
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "front_matter"
+    },
+    {
+     "key": "abstract",
+     "title": "Abstract",
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "abstract"
+    },
+    {
+     "key": "1",
+     "title": "Introduction",
+     "number": "1",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "1.1",
+     "title": "Background",
+     "number": "1.1",
+     "level": 2,
+     "parent": "1",
+     "section_type": "body"
+    },
+    {
+     "key": "2",
+     "title": "Results",
+     "number": "2",
+     "level": 1,
+     "parent": null,
+     "section_type": "body"
+    },
+    {
+     "key": "references",
+     "title": "References",
+     "number": null,
+     "level": 1,
+     "parent": null,
+     "section_type": "references"
+    }
+   ],
+   "blocks": [
+    {
+     "key": "p1_header",
+     "page_number": 1,
+     "type": "HEADER",
+     "label": "header",
+     "pdf_bbox": [
+      54.0,
+      28.0,
+      231.41,
+      38.99
+     ],
+     "text": "Synthetic Journal of Document Analysis 12 (2024)",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "p1_page_number",
+     "page_number": 1,
+     "type": "PAGE_NUMBER",
+     "label": "number",
+     "pdf_bbox": [
+      295.0,
+      800.0,
+      300.0,
+      812.37
+     ],
+     "text": "1",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "title",
+     "page_number": 1,
+     "type": "TITLE",
+     "label": "doc_title",
+     "pdf_bbox": [
+      54.0,
+      75.0,
+      402.5,
+      96.98
+     ],
+     "text": "Document Reconstruction in a Single Column",
+     "flow": "main",
+     "section": "front"
+    },
+    {
+     "key": "authors",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      102.98,
+      197.39,
+      116.72
+     ],
+     "text": "Dee Specimen and Eli Template",
+     "flow": "main",
+     "section": "front"
+    },
+    {
+     "key": "abstract_heading",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      129.98,
+      100.64,
+      145.79
+     ],
+     "text": "Abstract",
+     "flow": "main",
+     "section": "abstract"
+    },
+    {
+     "key": "abstract_text",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "abstract",
+     "pdf_bbox": [
+      54.0,
+      151.79,
+      541.0,
+      202.13
+     ],
+     "text": "This abstract belongs to the single-column paper. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page.",
+     "flow": "main",
+     "section": "abstract"
+    },
+    {
+     "key": "h_introduction",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      219.13,
+      130.67,
+      234.93
+     ],
+     "text": "1 Introduction",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_1",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      240.93,
+      541.0,
+      291.27
+     ],
+     "text": "Single-column introduction, first paragraph. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "intro_2",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      300.27,
+      541.0,
+      350.61
+     ],
+     "text": "Single-column introduction, second paragraph. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "1"
+    },
+    {
+     "key": "h_background",
+     "page_number": 1,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      362.61,
+      129.02,
+      376.35
+     ],
+     "text": "1.1 Background",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "background_1",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      382.35,
+      541.0,
+      408.94
+     ],
+     "text": "Background material introduces the relation Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "equation_1",
+     "page_number": 1,
+     "type": "EQUATION",
+     "label": "display_formula",
+     "pdf_bbox": [
+      271.5,
+      412.94,
+      323.5,
+      429.94
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "1.1",
+     "latex": "E = mc^2",
+     "equation_number": "(1)"
+    },
+    {
+     "key": "equation_1_number",
+     "page_number": 1,
+     "type": "OTHER",
+     "label": "formula_number",
+     "pdf_bbox": [
+      529.39,
+      414.79,
+      541.0,
+      427.84
+     ],
+     "text": "(1)",
+     "flow": "attached",
+     "section": "1.1",
+     "attached_to": "equation_1"
+    },
+    {
+     "key": "background_2",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      437.94,
+      541.0,
+      500.16
+     ],
+     "text": "After the equation the background goes on. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document.",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "background_3",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      509.16,
+      541.0,
+      583.25
+     ],
+     "text": "A further background paragraph fills the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards.",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "background_4",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      592.25,
+      541.0,
+      666.34
+     ],
+     "text": "One more background paragraph before the page ends. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it.",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "background_5",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      675.34,
+      541.0,
+      737.55
+     ],
+     "text": "The page is almost full at this point. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "1.1"
+    },
+    {
+     "key": "background_6",
+     "page_number": 1,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      746.55,
+      541.0,
+      773.14
+     ],
+     "text": "The last paragraph of the first page is cut by the page break. The order in which regions are read follows the columns of the page. Its final sentence carries on over the page boundary and",
+     "flow": "main",
+     "section": "1.1",
+     "continued_by": "background_7"
+    },
+    {
+     "key": "p2_header",
+     "page_number": 2,
+     "type": "HEADER",
+     "label": "header",
+     "pdf_bbox": [
+      54.0,
+      28.0,
+      231.41,
+      38.99
+     ],
+     "text": "Synthetic Journal of Document Analysis 12 (2024)",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "p2_page_number",
+     "page_number": 2,
+     "type": "PAGE_NUMBER",
+     "label": "number",
+     "pdf_bbox": [
+      295.0,
+      800.0,
+      300.0,
+      812.37
+     ],
+     "text": "2",
+     "flow": "furniture",
+     "section": null
+    },
+    {
+     "key": "background_7",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      72.0,
+      541.0,
+      86.72
+     ],
+     "text": "ends only on the second page. Running headers and page numbers are kept apart from the body of the document.",
+     "flow": "main",
+     "section": "1.1",
+     "continues": "background_6"
+    },
+    {
+     "key": "h_results",
+     "page_number": 2,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      98.72,
+      105.13,
+      114.52
+     ],
+     "text": "2 Results",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "results_1",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      120.52,
+      541.0,
+      158.98
+     ],
+     "text": "Results are summarized in Table 1 and Figure 1; Table 7 does not exist. Captions are attached to the object they describe and are not read a second time. Running headers and page numbers are kept apart from the body of the document. All coordinates are stored in points with the origin at the top left corner.",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "table_1",
+     "page_number": 2,
+     "type": "TABLE",
+     "label": "table",
+     "pdf_bbox": [
+      54.0,
+      187.66,
+      541.0,
+      255.66
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "2",
+     "grid": [
+      [
+       "Dataset",
+       "Pages",
+       "Regions",
+       "Accuracy"
+      ],
+      [
+       "Alpha",
+       "120",
+       "1,840",
+       "91.2"
+      ],
+      [
+       "Beta",
+       "310",
+       "4,975",
+       "88.7"
+      ],
+      [
+       "Gamma",
+       "95",
+       "1,102",
+       "93.5"
+      ]
+     ],
+     "caption": "Table 1: Results on three datasets."
+    },
+    {
+     "key": "table_caption",
+     "page_number": 2,
+     "type": "CAPTION",
+     "label": "figure_title",
+     "pdf_bbox": [
+      54.0,
+      167.98,
+      185.82,
+      179.66
+     ],
+     "text": "Table 1: Results on three datasets.",
+     "flow": "attached",
+     "section": "2",
+     "attached_to": "table_1"
+    },
+    {
+     "key": "results_2",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      265.66,
+      541.0,
+      304.13
+     ],
+     "text": "The chart that follows shows the same numbers. Regions are located first and their content is recognized afterwards. The order in which regions are read follows the columns of the page. A block that spans both columns separates the text above it from the text below it.",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "figure_1",
+     "page_number": 2,
+     "type": "CHART",
+     "label": "chart",
+     "pdf_bbox": [
+      180.28,
+      313.13,
+      414.72,
+      462.17
+     ],
+     "text": null,
+     "flow": "main",
+     "section": "2",
+     "figure_number": "Figure 1",
+     "caption": "Error on three datasets."
+    },
+    {
+     "key": "figure_1_caption",
+     "page_number": 2,
+     "type": "CAPTION",
+     "label": "figure_title",
+     "pdf_bbox": [
+      234.9,
+      468.17,
+      360.1,
+      479.84
+     ],
+     "text": "Figure 1: Error on three datasets.",
+     "flow": "attached",
+     "section": "2",
+     "attached_to": "figure_1"
+    },
+    {
+     "key": "results_3",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "text",
+     "pdf_bbox": [
+      54.0,
+      487.84,
+      541.0,
+      526.31
+     ],
+     "text": "A closing paragraph follows the chart. All coordinates are stored in points with the origin at the top left corner. The approach is evaluated on three collections of scanned and digital documents. Each page is rendered once and every later stage works on that rendering.",
+     "flow": "main",
+     "section": "2"
+    },
+    {
+     "key": "h_references",
+     "page_number": 2,
+     "type": "HEADING",
+     "label": "paragraph_title",
+     "pdf_bbox": [
+      54.0,
+      538.31,
+      116.0,
+      554.11
+     ],
+     "text": "References",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_1",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      54.0,
+      560.11,
+      541.0,
+      586.7
+     ],
+     "text": "[1] A. Author and B. Writer. A study of synthetic documents, part 1. Proceedings of the Workshop on Fixtures, pages 10-19, 2021.",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_2",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      54.0,
+      590.7,
+      541.0,
+      617.29
+     ],
+     "text": "[2] A. Author and B. Writer. A study of synthetic documents, part 2. Proceedings of the Workshop on Fixtures, pages 20-29, 2022.",
+     "flow": "main",
+     "section": "references"
+    },
+    {
+     "key": "reference_3",
+     "page_number": 2,
+     "type": "PARAGRAPH",
+     "label": "reference_content",
+     "pdf_bbox": [
+      54.0,
+      621.29,
+      541.0,
+      647.88
+     ],
+     "text": "[3] A. Author and B. Writer. A study of synthetic documents, part 3. Proceedings of the Workshop on Fixtures, pages 30-39, 2023.",
+     "flow": "main",
+     "section": "references"
+    }
+   ]
+  }
+ }
+}
