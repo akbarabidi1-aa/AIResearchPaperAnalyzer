@@ -31,3 +31,7 @@ figure_crops/
 # Phase 8 document reconstruction: reading-order images (--visualize-order). document.json itself is
 # written into the working directory of a PDF (AIEngine/output/ or the --output directory), not the repo.
 order_debug/
+
+# Phase 8.5 real-paper validation: papers placed by hand (licences vary), rasterized copies and every
+# output made from them stay out of the repo. Only docs/PHASE_8_5_REAL_PAPER_VALIDATION.md is committed.
+tests/real_papers/
